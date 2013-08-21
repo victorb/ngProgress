@@ -1,76 +1,115 @@
 <html ng-app="progressApp">
 <head>
     <title>AngularJS Application</title>
+    <style>
+         * {
+            margin: 0px;
+            padding: 0px;
+         }
+
+         div {
+            margin: 1em;
+         }
+
+         a {
+           display: inline-block;
+           padding: 6px 12px;
+           margin-bottom: 0;
+           font-size: 14px;
+           font-weight: normal;
+           line-height: 1.428571429;
+           text-align: center;
+           white-space: nowrap;
+           vertical-align: middle;
+           cursor: pointer;
+           border: 1px solid transparent;
+           border-radius: 4px;
+           -webkit-user-select: none;
+              -moz-user-select: none;
+               -ms-user-select: none;
+                -o-user-select: none;
+                   user-select: none;
+            color: #333333;
+            background-color: #ffffff;
+            border-color: #cccccc;
+         }
+
+         a:hover {
+            color: #333333;
+            text-decoration: none;
+         }
+
+         .container {
+            width: 400px;
+            margin: 1em auto;
+         }
+
+         .container hr {
+            border: 1px solid #999;
+         }
+
+         .value {
+            float: right;
+         }
+    </style>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.1/angular.min.js"></script>
 </head>
 <body ng-controller="MainCtrl">
-    <h1>Hello coolt {{ name }}</h1>
-    <h2>{{ counter }}%</h2>
-
-    <hr>
-    <div>
-        Progress: <input type="number" ng-model="counter"><br/>
-        <a href="#" ng-click="setWidth(counter)">Set progress</a>
-    </div>
-    <hr>
-    <div>
-       <a href="#" ng-click="startProgress()">Start progressbar</a> 
-    </div>
-    <hr>
-    <div>
-       <a href="#" ng-click="completeProgress()">Complete progressbar</a> 
-    </div>
-    <hr>
-    <div>
-       <a href="#" ng-click="stopProgress()">Stop progressbar</a> 
-    </div>
-    <hr>
-    <div>
-       <a href="#" ng-click="resetProgress()">Reset progressbar</a> 
-    </div>
-    <hr>
-    <div>
-        <a href="#" ng-click="count()">Increment</a>
-    </div>
-    <hr>
-    <div>
-        Height: <input type="text" ng-model="height"><br>
-        <a href="#" ng-click="new_height(height)">Change height</a>
-    </div>
-    <hr>
-    <div>
-        Color: <input type="text" ng-model="color"><br>
-        <a href="#" ng-click="new_color(color)">Change color</a>
+    <div class="container">
+        <hr>
+        <div>
+            <div class="value">Progress: <input type="number" ng-model="counter"></div>
+            <a href="#" ng-click="setWidth(counter)">Set progress</a>
+        </div>
+        <hr>
+        <div>
+           <a href="#" ng-click="startProgress()">Start progressbar</a> 
+        </div>
+        <hr>
+        <div>
+           <a href="#" ng-click="completeProgress()">Complete progressbar</a> 
+        </div>
+        <hr>
+        <div>
+           <a href="#" ng-click="stopProgress()">Stop progressbar</a> 
+        </div>
+        <hr>
+        <div>
+           <a href="#" ng-click="resetProgress()">Reset progressbar</a> 
+        </div>
+        <hr>
+        <div>
+            <a href="#" ng-click="count()">Increment</a>
+        </div>
+        <hr>
+        <div>
+            <div class="value">
+                Height: <input type="text" ng-model="height">
+            </div>
+            <a href="#" ng-click="new_height(height)">Change height</a>
+        </div>
+        <hr>
+        <div>
+            <div class="value">
+                Color: <input type="text" ng-model="color">
+            </div>
+            <a href="#" ng-click="new_color(color)">Change color</a>
+        </div>
     </div>
 <script src="ngProgress.js"></script>
 <script>
     var app = angular.module('progressApp', ['ngProgress']);
 
-    // app.config(function(progressbarProvider){
-    //     progressbarProvider.setColor('blue');
-    //     progressbarProvider.setHeight('20px');
-    // });
+    app.config(function(progressbarProvider){
+        // Default color is firebrick
+        progressbarProvider.setColor('blue');
+        // Default height is 2px
+        progressbarProvider.setHeight('4px');
+    });
 
     var MainCtrl = function($scope, $timeout, progressbar) {
         $scope.name = 'Lars';
-        // $scope.color = 'firebrick';
-        // $scope.height = '2px';
         $scope.counter = 0;
-
-        // console.log(progressbar.status());
-
-        // progressbar.set(50);
-
-        // console.log(progressbar.status());
-
-        // progressbar.reset();
-
-        // progressbar.start();
-
-        // $timeout(function(){
-        //     progressbar.complete();
-        // }, 5000);
-
         $scope.setWidth = function(new_width) {
             progressbar.set(new_width);
         }
@@ -83,26 +122,6 @@
             $scope.counter = $scope.counter + 9; 
             progressbar.set($scope.counter);
         }
-
-        // $scope.$watch('color', function(newVal){
-        //     console.log('change');
-        //     if(typeof newVal !== 'undefined') {
-        //         progressbar.color(newVal);
-        //     }
-        // });
-
-        // $scope.$watch('height', function(newVal){
-        //     console.log('change');
-        //     if(typeof newVal !== 'undefined') {
-        //         progressbar.height(newVal);
-        //     }
-        // });
-
-        // $scope.$watch('counter', function(newVal){
-        //     if(typeof newVal !== 'undefined') {
-        //         progressbar.set(newVal);
-        //     }
-        // });
 
         $scope.new_color = function(color) {
             progressbar.color(color);
