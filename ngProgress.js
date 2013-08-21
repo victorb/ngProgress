@@ -82,6 +82,7 @@ module.provider('progressbar', function() {
             // Set's the progressbar percentage. Use a number between 0 - 100. 
             // If 100 is provided, complete will be called.
             set: function(new_count) {
+                clearInterval($window.interval);
                 if(new_count >= 100) {
                     this.complete();
                 }
@@ -93,6 +94,7 @@ module.provider('progressbar', function() {
             // Resets the progressbar to percetage 0 and therefore will be hided after
             // it's rollbacked
             reset: function() {
+                clearInterval($window.interval);
                 count = 0;
                 progressbar.css('width', count + '%');
                 progressbar.css('opacity', '1');
@@ -100,6 +102,7 @@ module.provider('progressbar', function() {
             },
             // Jumps to 100% progress and fades away progressbar.
             complete: function() {
+                clearInterval($window.interval);
                 count = 100;
                 progressbar.css('width', count + '%');
                 setTimeout(function(){
