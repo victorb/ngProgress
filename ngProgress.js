@@ -64,13 +64,9 @@ module.provider('progressbar', function () {
                 progressbar.css('width', count + '%');
                 progressbar.css('opacity', '1');
                 $window.interval = setInterval(function () {
-                    if (count + 1 >= 95) {
-                        clearInterval($window.interval);
-                    } else {
-                        var random = Math.floor(Math.random() * 5);
-                        count = count + random;
-                        progressbar.css('width', count + '%');
-                    }
+                    var remaining = 100 - count;
+                    count = count + (0.15 * Math.pow(1-Math.sqrt(remaining), 2));
+                    progressbar.css('width', count + '%');
                 }, 400);
             },
             // Sets the height of the progressbar. Use any valid CSS value
