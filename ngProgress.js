@@ -13,7 +13,7 @@ module.provider('progressbar', function() {
     this.height = '2px';
     this.color = 'firebrick';
      
-    this.$get = function($document, $window) {
+    this.$get = ['$document', '$window', function($document, $window) {
         var count = this.count;
         var height = this.height;
         var color = this.color;
@@ -122,7 +122,7 @@ module.provider('progressbar', function() {
                 return count;
             }
         }
-    };
+    }];
 
     this.setColor = function(color) {
         this.color = color;
