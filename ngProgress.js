@@ -51,7 +51,7 @@ module.provider('progressbar', function() {
                 progressbar.css('width', count + '%');
                 progressbar.css('opacity', '1');
                 $window.interval = setInterval(function(){
-                    if(count + 1 >= 100) {
+                    if(count + 1 >= 95) {
                         clearInterval($window.interval);
                     } else {
                         var random = Math.floor(Math.random()*5)
