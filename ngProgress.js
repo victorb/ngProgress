@@ -23,14 +23,18 @@ module.provider('progressbar', function() {
 
         //Styling for the progressbar-container
         progressbarContainer.css('position', 'fixed');
-        progressbarContainer.css('top', '0');
-        progressbarContainer.css('left', '0');
-        progressbarContainer.css('right', '0');
+        progressbarContainer.css('margin', '0');
+        progressbarContainer.css('padding', '0');
+        progressbarContainer.css('top', '0px');
+        progressbarContainer.css('left', '0px');
+        progressbarContainer.css('right', '0px');
 
         //Styling for the progressbar itself
         progressbar.css('height', height);
         progressbar.css('box-shadow', '0px 0px 10px 0px ' + color);
         progressbar.css('width', count+'%');
+        progressbar.css('margin', '0');
+        progressbar.css('padding', '0');
         progressbar.css('background-color', color);
 
         //Add progressbar to progressbar-container and progressbar-container
