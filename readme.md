@@ -6,22 +6,28 @@ or simple loading between the page views. Prefereble, only for resource heavy si
 
 ## Usage
 
+Download ngProgress.js manually or install with bower
+
+```bower install ngprogress```
+
 Include ngProgress.js in your website.
 
-<script src="app/components/ngProgress/ngProgress.js"></script>
+```<script src="app/components/ngProgress/ngProgress.js"></script>```
 
 Inject ngProgress provider in controller
 
-var MainCtrl = function($scope, $timeout, progressbar) {
-}
+```var MainCtrl = function($scope, $timeout, progressbar) {
+}```
 
 Use with the API down below
 
+```
 progressbar.start();
 $timeout(progressbar.complete(), 1000);
+```
 
 ## API
-
+```
 // Starts the animation and adds between 0 - 5 percent to loading
 // each 400 milliseconds. Should always be finished with progressbar.complete()
 // to hide it
@@ -59,3 +65,4 @@ progressbar.reset();
 // Jumps to 100% progress and fades away progressbar.
 
 progressbar.complete();
+```
