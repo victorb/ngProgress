@@ -1,0 +1,130 @@
+<html ng-app="progressApp">
+<head>
+    <title>AngularJS Application</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.1/angular.min.js"></script>
+</head>
+<body ng-controller="MainCtrl">
+    <h1>Hello coolt {{ name }}</h1>
+    <h2>{{ counter }}%</h2>
+
+    <hr>
+    <div>
+        Progress: <input type="number" ng-model="counter"><br/>
+        <a href="#" ng-click="setWidth(counter)">Set progress</a>
+    </div>
+    <hr>
+    <div>
+       <a href="#" ng-click="startProgress()">Start progressbar</a> 
+    </div>
+    <hr>
+    <div>
+       <a href="#" ng-click="completeProgress()">Complete progressbar</a> 
+    </div>
+    <hr>
+    <div>
+       <a href="#" ng-click="stopProgress()">Stop progressbar</a> 
+    </div>
+    <hr>
+    <div>
+       <a href="#" ng-click="resetProgress()">Reset progressbar</a> 
+    </div>
+    <hr>
+    <div>
+        <a href="#" ng-click="count()">Increment</a>
+    </div>
+    <hr>
+    <div>
+        Height: <input type="text" ng-model="height"><br>
+        <a href="#" ng-click="new_height(height)">Change height</a>
+    </div>
+    <hr>
+    <div>
+        Color: <input type="text" ng-model="color"><br>
+        <a href="#" ng-click="new_color(color)">Change color</a>
+    </div>
+<script src="ngProgress.js"></script>
+<script>
+    var app = angular.module('progressApp', ['ngProgress']);
+
+    // app.config(function(progressbarProvider){
+    //     progressbarProvider.setColor('blue');
+    //     progressbarProvider.setHeight('20px');
+    // });
+
+    var MainCtrl = function($scope, $timeout, progressbar) {
+        $scope.name = 'Lars';
+        // $scope.color = 'firebrick';
+        // $scope.height = '2px';
+        $scope.counter = 0;
+
+        // console.log(progressbar.status());
+
+        // progressbar.set(50);
+
+        // console.log(progressbar.status());
+
+        // progressbar.reset();
+
+        // progressbar.start();
+
+        // $timeout(function(){
+        //     progressbar.complete();
+        // }, 5000);
+
+        $scope.setWidth = function(new_width) {
+            progressbar.set(new_width);
+        }
+
+        $scope.startProgress = function() {
+            progressbar.start();
+        }
+
+        $scope.count = function() {
+            $scope.counter = $scope.counter + 9; 
+            progressbar.set($scope.counter);
+        }
+
+        // $scope.$watch('color', function(newVal){
+        //     console.log('change');
+        //     if(typeof newVal !== 'undefined') {
+        //         progressbar.color(newVal);
+        //     }
+        // });
+
+        // $scope.$watch('height', function(newVal){
+        //     console.log('change');
+        //     if(typeof newVal !== 'undefined') {
+        //         progressbar.height(newVal);
+        //     }
+        // });
+
+        // $scope.$watch('counter', function(newVal){
+        //     if(typeof newVal !== 'undefined') {
+        //         progressbar.set(newVal);
+        //     }
+        // });
+
+        $scope.new_color = function(color) {
+            progressbar.color(color);
+            // progressbar.start();
+        }
+
+        $scope.new_height = function(new_height) {
+            progressbar.height(new_height);
+        }
+
+        $scope.completeProgress = function() {
+            progressbar.complete();
+        }
+
+        $scope.stopProgress = function() {
+            progressbar.stop();
+        }
+
+        $scope.resetProgress = function() {
+            progressbar.reset();
+        }
+    }
+</script>
+</body>
+</html>
