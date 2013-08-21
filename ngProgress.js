@@ -1,7 +1,7 @@
 /*global angular: true, document: true, setInterval: true,
 clearInterval: true, setTimeout: true */
 /*
-ngProgress v0.0.2 - slim, site-wide progressbar for AngularJS
+ngProgress v0.0.3 - slim, site-wide progressbar for AngularJS
 (C) 2013 - Victor Bjelkholm
 License: MIT (see LICENSE)
 Source: https://github.com/victorbjelkholm/ngprogress
@@ -39,6 +39,7 @@ module.provider('progressbar', function () {
         progressbarContainer.css('top', '0px');
         progressbarContainer.css('left', '0px');
         progressbarContainer.css('right', '0px');
+        progressbarContainer.css('z-index', '99999');
 
         //Styling for the progressbar itself
         progressbar.css('height', height);
@@ -47,6 +48,7 @@ module.provider('progressbar', function () {
         progressbar.css('margin', '0');
         progressbar.css('padding', '0');
         progressbar.css('background-color', color);
+        progressbar.css('z-index', '99998');
 
         //Add progressbar to progressbar-container and progressbar-container
         // to body
