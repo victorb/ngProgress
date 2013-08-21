@@ -1,6 +1,6 @@
 <html ng-app="progressApp">
 <head>
-    <title>AngularJS Application</title>
+    <title>ngProgress - slim, site-wide progressbar for AngularJS</title>
     <style>
          * {
             margin: 0px;
@@ -158,6 +158,16 @@ var MainCtrl = function($scope, progressbar) {
             <a href="#demo" ng-click="new_color(color)">Change color</a>
         </div>
         </div>
+        <div id="share">
+            <p>Since the providers quality depends on peer-review, please review it yourself or share it to people that like to review stuff. I would be forever grateful and buy you an coffee if you are in Barcelona</p>
+            <div>
+            </div>
+                <a href="http://news.ycombinator.com/submit" class="hn-share-button">Vote on HN</a>
+                <a href="https://twitter.com/share" class="twitter-share-button" data-hashtags="angularjs">Tweet</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+<div style="margin:0;padding:0;display:inline;" class="g-plus" data-action="share" data-annotation="inline" data-width="200"></div>
+
+        </div>
         <div id="api">
         <h2>
             API
@@ -299,6 +309,21 @@ var MainCtrl = function($scope, progressbar) {
   ga('create', 'UA-20806824-13', 'victorbjelkholm.github.io');
   ga('send', 'pageview');
 
+</script>
+<script>
+    (function(d, t) {
+        var g = d.createElement(t),
+            s = d.getElementsByTagName(t)[0];
+        g.src = '//hnbutton.appspot.com/static/hn.min.js';
+        s.parentNode.insertBefore(g, s);
+    }(document, 'script'));
+</script>
+<script type="text/javascript">
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
 </script>
 </body>
 </html>
