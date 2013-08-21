@@ -1,3 +1,10 @@
+/*
+ngProgress v0.0.2 - slim, site-wide progressbar for AngularJS
+(C) 2013 - Victor Bjelkholm
+License: MIT (see LICENSE)
+Source: https://github.com/victorbjelkholm/ngprogress
+*/
+
 var module = angular.module('ngProgress', []);
 
 module.provider('progressbar', function() {
