@@ -19,7 +19,7 @@ module.provider('progressbar', function () {
 
     this.$get = ['$document', '$window', function ($document, $window) {
         var count = this.count,
-            height, color,
+            height, color, computedStyle,
             $body = $document.find('body'),
             // Create elements that is needed
             progressbarContainer = angular.element('<div class="progressbar-container"></div>'),
@@ -31,8 +31,15 @@ module.provider('progressbar', function () {
         $body.append(progressbarContainer);
 
         //Set height and color from CSS
-        height = this.height = progressbar.css('height') || this.height;
-        color = this.color = progressbar.css('background-color') || this.color;
+        if($window.getComputedStyle){
+            computedStyle = $window.getComputedStyle(progressbar[0]);
+            color = this.color = computedStyle['background-color'] || this.color;
+        }else{
+            //IE8 fix
+            computedStyle = progressbar[0].currentStyle;
+            color = this.color = computedStyle.backgroundColor || this.color;
+        }
+        height = this.height = computedStyle.height || this.height;
 
         //Styling for the progressbar itself
         progressbar.css('height', height);
