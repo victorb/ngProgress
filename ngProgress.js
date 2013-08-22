@@ -25,6 +25,11 @@ module.provider('progressbar', function () {
             progressbarContainer = angular.element('<div class="progressbar-container"></div>'),
             progressbar = angular.element('<div class="progressbar"></div>');
 
+        //Add progressbar to progressbar-container and progressbar-container
+        // to body
+        progressbarContainer.append(progressbar);
+        $body.append(progressbarContainer);
+
         //Set height and color from CSS
         height = this.height = progressbar.css('height') || this.height;
         color = this.color = progressbar.css('background-color') || this.color;
@@ -35,10 +40,6 @@ module.provider('progressbar', function () {
         progressbar.css('width', count + '%');
         progressbar.css('background-color', color);
 
-        //Add progressbar to progressbar-container and progressbar-container
-        // to body
-        progressbarContainer.append(progressbar);
-        $body.append(progressbarContainer);
 
 
         return {
