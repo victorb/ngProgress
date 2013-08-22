@@ -33,12 +33,11 @@ module.provider('progressbar', function () {
         //Set height and color from CSS
         if($window.getComputedStyle){
             computedStyle = $window.getComputedStyle(progressbar[0]);
-            color = this.color = computedStyle['background-color'] || this.color;
         }else{
             //IE8 fix
             computedStyle = progressbar[0].currentStyle;
-            color = this.color = computedStyle.backgroundColor || this.color;
         }
+        color = this.color = computedStyle.backgroundColor || this.color;
         height = this.height = computedStyle.height || this.height;
 
         //Styling for the progressbar itself
