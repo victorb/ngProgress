@@ -24,7 +24,7 @@ module.provider('progressbar', function () {
             $body = $document.find('body'),
             // Create elements that is needed
             progressbarContainer = angular.element('<div class="progressbar-container"></div>'),
-            progressbar = angular.element('<div class="progressbar"></div>'),
+            progressbar = angular.element('<div class="progressbar"></div>');
 
         //Styling for the progressbar itself
         progressbar.css('height', height);
