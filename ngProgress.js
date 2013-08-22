@@ -19,12 +19,15 @@ module.provider('progressbar', function () {
 
     this.$get = ['$document', '$window', function ($document, $window) {
         var count = this.count,
-            height = this.height,
-            color = this.color,
+            height, color,
             $body = $document.find('body'),
             // Create elements that is needed
             progressbarContainer = angular.element('<div class="progressbar-container"></div>'),
             progressbar = angular.element('<div class="progressbar"></div>');
+
+        //Set height and color from CSS
+        height = this.height = progressbar.css('height') || this.height;
+        color = this.color = progressbar.css('background-color') || this.color;
 
         //Styling for the progressbar itself
         progressbar.css('height', height);
