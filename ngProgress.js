@@ -13,40 +13,50 @@ module.provider('progressbar', function () {
 
     'use strict';
     //Default values for provider
+    this.autoStyle = true;
     this.count = 0;
     this.height = '2px';
     this.color = 'firebrick';
 
     this.$get = ['$document', '$window', function ($document, $window) {
         var count = this.count,
-            height, color, computedStyle,
+            height = this.height,
+            color = this.color,
             $body = $document.find('body'),
             // Create elements that is needed
             progressbarContainer = angular.element('<div class="progressbar-container"></div>'),
             progressbar = angular.element('<div class="progressbar"></div>');
 
-        //Add progressbar to progressbar-container and progressbar-container
+        // Add progressbar to progressbar-container and progressbar-container
         // to body
         progressbarContainer.append(progressbar);
         $body.append(progressbarContainer);
 
-        //Set height and color from CSS
-        if($window.getComputedStyle){
-            computedStyle = $window.getComputedStyle(progressbar[0]);
-        }else{
-            //IE8 fix
-            computedStyle = progressbar[0].currentStyle;
+        // Styling for the progressbar itself
+        if(this.autoStyle){
+            progressbarContainer.css({
+                position: 'fixed',
+                margin: 0,
+                padding: 0,
+                top: 0,
+                left: 0,
+                right: 0,
+                'z-index': 99999
+            });
+            progressbar.css({
+                height: height,
+                width:  count + '%',
+                'background-color': color,
+                'box-shadow': '0 0 10px 0 ' + color,
+                margin: 0,
+                padding: 0,
+                'z-index': 99998,
+                '-webkit-transition': 'all 0.5s ease-in-out',
+                '-moz-transition': 'all 0.5s ease-in-out',
+                '-o-transition': 'all 0.5s ease-in-out',
+                'transition': 'all 0.5s ease-in-out'
+            });
         }
-        color = this.color = computedStyle.backgroundColor || this.color;
-        height = this.height = computedStyle.height || this.height;
-
-        //Styling for the progressbar itself
-        progressbar.css('height', height);
-        progressbar.css('box-shadow', '0px 0px 10px 0px ' + color);
-        progressbar.css('width', count + '%');
-        progressbar.css('background-color', color);
-
-
 
         return {
             // Starts the animation and adds between 0 - 5 percent to loading
