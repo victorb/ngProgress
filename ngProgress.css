@@ -4,7 +4,8 @@
     padding: 0;
     z-index: 99998;
     background-color: green;
-    box-shadow: 0 0 10px 0 green;
+    color: green;
+    box-shadow: 0 0 10px 0; /* Inherits the font color */
     height: 2px;
 
     /* Add CSS3 styles for transition smoothing */

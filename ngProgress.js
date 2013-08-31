@@ -47,7 +47,8 @@ module.provider('progressbar', function () {
                 height: height,
                 width:  count + '%',
                 'background-color': color,
-                'box-shadow': '0 0 10px 0 ' + color,
+                color: color,
+                'box-shadow': '0 0 10px 0',
                 margin: 0,
                 padding: 0,
                 'z-index': 99998,
@@ -83,7 +84,7 @@ module.provider('progressbar', function () {
             // Sets the color of the progressbar and it's shadow. Use any valid HTML
             // color
             color: function (color) {
-                progressbar.css('box-shadow', '0px 0px 10px 0px ' + color);
+                progressbar.css('color', color);
                 progressbar.css('background-color', color);
             },
             // Returns on how many percent the progressbar is at. Should'nt be needed
