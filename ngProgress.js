@@ -33,7 +33,7 @@ module.provider('progressbar', function () {
         $body.append(progressbarContainer);
 
         // Styling for the progressbar itself
-        if(this.autoStyle){
+        if (this.autoStyle) {
             progressbarContainer.css({
                 position: 'fixed',
                 margin: 0,
@@ -68,7 +68,7 @@ module.provider('progressbar', function () {
                 progressbar.css('opacity', '1');
                 $window.interval = setInterval(function () {
                     var remaining = 100 - count;
-                    count = count + (0.15 * Math.pow(1-Math.sqrt(remaining), 2));
+                    count = count + (0.15 * Math.pow(1 - Math.sqrt(remaining), 2));
                     progressbar.css('width', count + '%');
                 }, 400);
             },
