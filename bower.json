@@ -1,7 +1,7 @@
 {
   "name": "ngprogress",
-  "version": "0.0.1",
-  "main": "ngprogress.js",
+  "version": "0.0.3",
+  "main": "ngProgress.js",
   "ignore": [
     "**/.*",
     "node_modules",

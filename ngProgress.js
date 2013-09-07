@@ -13,6 +13,7 @@ module.provider('progressbar', function () {
 
     'use strict';
     //Default values for provider
+    this.autoStyle = true;
     this.count = 0;
     this.height = '2px';
     this.color = 'firebrick';
@@ -22,39 +23,41 @@ module.provider('progressbar', function () {
             height = this.height,
             color = this.color,
             $body = $document.find('body'),
-        // Create elements that is needed
+            // Create elements that is needed
             progressbarContainer = angular.element('<div class="progressbar-container"></div>'),
-            progressbar = angular.element('<div class="progressbar"></div>'),
+            progressbar = angular.element('<div class="progressbar"></div>');
 
-        //Add CSS3 styles for transition smoothing
-            css = document.createElement("style");
-        css.type = "text/css";
-        css.innerHTML = ".progressbar {-webkit-transition: all 0.5s ease-in-out; -moz-transition: all 0.5s ease-in-out; -o-transition: all 0.5s ease-in-out; transition: all 0.5s ease-in-out;}";
-        document.body.appendChild(css);
-
-        //Styling for the progressbar-container
-        progressbarContainer.css('position', 'fixed');
-        progressbarContainer.css('margin', '0');
-        progressbarContainer.css('padding', '0');
-        progressbarContainer.css('top', '0px');
-        progressbarContainer.css('left', '0px');
-        progressbarContainer.css('right', '0px');
-        progressbarContainer.css('z-index', '99999');
-
-        //Styling for the progressbar itself
-        progressbar.css('height', height);
-        progressbar.css('box-shadow', '0px 0px 10px 0px ' + color);
-        progressbar.css('width', count + '%');
-        progressbar.css('margin', '0');
-        progressbar.css('padding', '0');
-        progressbar.css('background-color', color);
-        progressbar.css('z-index', '99998');
-
-        //Add progressbar to progressbar-container and progressbar-container
+        // Add progressbar to progressbar-container and progressbar-container
         // to body
         progressbarContainer.append(progressbar);
         $body.append(progressbarContainer);
 
+        // Styling for the progressbar itself
+        if(this.autoStyle){
+            progressbarContainer.css({
+                position: 'fixed',
+                margin: 0,
+                padding: 0,
+                top: 0,
+                left: 0,
+                right: 0,
+                'z-index': 99999
+            });
+            progressbar.css({
+                height: height,
+                width:  count + '%',
+                'background-color': color,
+                color: color,
+                'box-shadow': '0 0 10px 0',
+                margin: 0,
+                padding: 0,
+                'z-index': 99998,
+                '-webkit-transition': 'all 0.5s ease-in-out',
+                '-moz-transition': 'all 0.5s ease-in-out',
+                '-o-transition': 'all 0.5s ease-in-out',
+                'transition': 'all 0.5s ease-in-out'
+            });
+        }
 
         return {
             // Starts the animation and adds between 0 - 5 percent to loading
@@ -77,7 +80,7 @@ module.provider('progressbar', function () {
             // Sets the color of the progressbar and it's shadow. Use any valid HTML
             // color
             color: function (color) {
-                progressbar.css('box-shadow', '0px 0px 10px 0px ' + color);
+                progressbar.css('color', color);
                 progressbar.css('background-color', color);
             },
             // Returns on how many percent the progressbar is at. Should'nt be needed
