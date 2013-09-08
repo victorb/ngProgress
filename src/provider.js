@@ -17,67 +17,25 @@ angular.module('ngProgress.provider', ['ngProgress.directive'])
         this.$get = ['$document',
             '$window',
             '$compile',
-            '$rootScope', function ($document, $window, $compile, $rootScope) {
+            '$rootScope',
+            '$timeout', function ($document, $window, $compile, $rootScope, $timeout) {
             var count = this.count,
                 height = this.height,
                 color = this.color,
                 $scope = $rootScope,
                 $body = $document.find('body');
-                // Create elements that is needed
-                // progressbarEl = '<h1>{{ count }}</h1>';
-            $window.count = this.count;
-            // $rootScope.count = count;
+
             var progressbarEl = $compile('<ng-progress></ng-progress>')($scope);
-            // $body.prepend(el);
-            // $body.append(progressbarEl);
-            // $compile(progressbarEl)($scope);
             $body.append(progressbarEl);
-
-            $scope.$watch('$window.count', function (newVal) {
-                console.log('count changed!');
-                if (newVal !== undefined) {
-                    console.log('is now' + newVal);
-                }
-            });
-                // console.log(progressbarEl.eq(0).html());
-                // progressbarContainer = angular.element('<div class="progressbar-container"></div>'),
-                // progressbar = angular.element('<div class="progressbar"></div>');
-
+            $scope.count = count;
+            if (height !== undefined) {
+                progressbarEl.eq(0).children().css('height', height);
+            }
+            if (color !== undefined) {
+                progressbarEl.eq(0).children().css('background-color', color);
+                progressbarEl.eq(0).children().css('color', color);
+            }
             var intervalCounterId = 0;
-            // $rootScope.$digest();
-            // Add progressbar to progressbar-container and progressbar-container
-            // to body
-            // progressbarContainer.append(progressbar);
-            // $body.append(progressbarContainer);
-
-            // Styling for the progressbar itself
-            // if (this.autoStyle) {
-            //     progressbarContainer.css({
-            //         position: 'fixed',
-            //         margin: 0,
-            //         padding: 0,
-            //         top: 0,
-            //         left: 0,
-            //         right: 0,
-            //         'z-index': 99999
-            //     });
-            //     progressbar.css({
-            //         height: height,
-            //         width:  count + '%',
-            //         'background-color': color,
-            //         color: color,
-            //         'box-shadow': '0 0 10px 0',
-            //         margin: 0,
-            //         padding: 0,
-            //         'z-index': 99998,
-            //         '-webkit-transition': 'all 0.5s ease-in-out',
-            //         '-moz-transition': 'all 0.5s ease-in-out',
-
-            //         '-o-transition': 'all 0.5s ease-in-out',
-            //         'transition': 'all 0.5s ease-in-out'
-            //     });
-            // }
-
             return {
                 // Starts the animation and adds between 0 - 5 percent to loading
                 // each 400 milliseconds. Should always be finished with progressbar.complete()
@@ -85,23 +43,31 @@ angular.module('ngProgress.provider', ['ngProgress.directive'])
                 start: function () {
                     // TODO Use requestAnimationFrame instead of setInterval
                     // https://developer.mozilla.org/en-US/docs/Web/API/window.requestAnimationFrame
-                    console.log('start called!');
+                    this.show();
+                    var self = this;
                     intervalCounterId = setInterval(function () {
                         if (isNaN(count)) {
                             clearInterval(intervalCounterId);
                             count = 0;
+                            self.hide();
+                        } else {
+                            var remaining = 100 - count;
+                            count = count + (0.15 * Math.pow(1 - Math.sqrt(remaining), 2));
+                            self.updateCount(count);
                         }
-                        var remaining = 100 - count;
-                        console.log('count: ' + count);
-                        count = count + (0.15 * Math.pow(1 - Math.sqrt(remaining), 2));
-                        $window.count = count;\
                     }, 200);
+                },
+                updateCount: function (new_count) {
+                    $scope.count = new_count;
+                    $scope.$apply();
                 },
                 // Sets the height of the progressbar. Use any valid CSS value
                 // Eg '10px', '1em' or '1%'
                 height: function (new_height) {
                     if (new_height !== undefined) {
                         height = new_height;
+                        $scope.height = height;
+                        $scope.$apply();
                     }
                     return height;
                 },
@@ -110,8 +76,25 @@ angular.module('ngProgress.provider', ['ngProgress.directive'])
                 color: function (new_color) {
                     if (new_color !== undefined) {
                         color = new_color;
+                        $scope.color = color;
+                        $scope.$apply();
                     }
                     return color;
+                },
+                hide: function () {
+                    progressbarEl.children().css('opacity', '0');
+                    var self = this;
+                    $timeout(function () {
+                        progressbarEl.children().css('width', '0%');
+                        $timeout(function () {
+                            self.show();
+                        }, 500);
+                    }, 500);
+                },
+                show: function () {
+                    $timeout(function () {
+                        progressbarEl.children().css('opacity', '1');
+                    }, 100);
                 },
                 // Returns on how many percent the progressbar is at. Should'nt be needed
                 status: function () {
@@ -124,41 +107,51 @@ angular.module('ngProgress.provider', ['ngProgress.directive'])
                 // Set's the progressbar percentage. Use a number between 0 - 100. 
                 // If 100 is provided, complete will be called.
                 set: function (new_count) {
+                    this.show();
+                    this.updateCount(new_count);
                     count = new_count;
                     clearInterval(intervalCounterId);
                     return count;
+                },
+                css: function (args) {
+                    return progressbarEl.children().css(args);
                 },
                 // Resets the progressbar to percetage 0 and therefore will be hided after
                 // it's rollbacked
                 reset: function () {
                     clearInterval(intervalCounterId);
                     count = 0;
-                    // progressbar.css('width', count + '%');
-                    // progressbar.css('opacity', '1');
+                    this.updateCount(count);
                     return 0;
                 },
                 // Jumps to 100% progress and fades away progressbar.
                 complete: function () {
-                    // this.reset();
                     count = 100;
-                    // progressbar.css('width', count + '%');
-                    // setTimeout(function () {
-                    //     progressbar.css('opacity', '0');
-                    // }, 500);
-                    // setTimeout(function () {
-                    //     count = 0;
-                    //     progressbar.css('width', count + '%');
-                    // }, 1000);
+                    this.updateCount(count);
+                    var self = this;
+                    $timeout(function () {
+                        self.hide();
+                        $timeout(function () {
+                            count = 0;
+                            self.updateCount(count);
+                        }, 500);
+                    }, 1000);
                     return count;
                 }
             };
         }];
 
         this.setColor = function (color) {
-            this.color = color;
+            if (color !== undefined) {
+                this.color = color;
+            }
+            return this.color;
         };
 
         this.setHeight = function (height) {
-            this.height = height;
+            if (height !== undefined) {
+                this.height = height;
+            }
+            return this.height;
         };
     });
