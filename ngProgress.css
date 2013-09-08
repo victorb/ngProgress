@@ -1,5 +1,5 @@
-/* Styling for the progressbar itself */
-.progressbar {
+/* Styling for the ngProgress itself */
+#ngProgress {
     margin: 0;
     padding: 0;
     z-index: 99998;
@@ -7,6 +7,7 @@
     color: green;
     box-shadow: 0 0 10px 0; /* Inherits the font color */
     height: 2px;
+    opacity: 0;
 
     /* Add CSS3 styles for transition smoothing */
     -webkit-transition: all 0.5s ease-in-out;
@@ -15,8 +16,8 @@
     transition: all 0.5s ease-in-out;
 }
 
-/* Styling for the progressbar-container */
-.progressbar-container {
+/* Styling for the ngProgress-container */
+#ngProgress-container {
     position: fixed;
     margin: 0;
     padding: 0;
