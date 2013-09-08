@@ -1,6 +1,6 @@
 {
   "name": "ngProgress",
-  "version": "0.0.3",
+  "version": "1.0.0",
   "description": "slim, site-wide progressbar for AngularJS",
   "main": "ngProgress.js",
   "repository": {
@@ -24,6 +24,10 @@
     "url": "https://github.com/VictorBjelkholm/ngProgress/issues"
   },
   "devDependencies": {
-    "grunt-contrib-concat": "~0.3.0"
+    "grunt-contrib-concat": "~0.3.0",
+    "karma": "~0.8"
+  },
+  "scripts": {
+    "test": "./node_modules/.bin/karma start --single-run --browsers PhantomJS"
   }
 }
