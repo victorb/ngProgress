@@ -1,10 +1,4 @@
 // Here is the business logic that we will use for the progress
-/*globals angular:true*/
-/**
-* ngProgress.provider Module
-*
-* This is the singleton that handles the actual progress of ngProgress
-*/
 angular.module('ngProgress.provider', ['ngProgress.directive'])
     .provider('ngProgress', function () {
         'use strict';

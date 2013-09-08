@@ -1,5 +1,4 @@
 // Here we have our dom manipulation
-/*globals angular:true*/
 angular.module('ngProgress.directive', [])
     .directive('ngProgress', function ($window, $rootScope) {
         var directiveObj = {
