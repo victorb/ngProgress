@@ -25,7 +25,7 @@
   },
   "devDependencies": {
     "grunt-contrib-concat": "~0.3.0",
-    "karma": "~0.8",
+    "karma": "~0.10",
     "karma-jasmine": "~0.1"
   },
   "scripts": {
