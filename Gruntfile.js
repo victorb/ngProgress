@@ -11,7 +11,13 @@ module.exports = function (grunt) {
             }
         },
         concat: {
-            banner: "Some information",
+            options: {
+                stripBanners: {
+                    'block': true,
+                    'line': true
+                },
+                banner: '/*\n<%= pkg.name %> <%= pkg.version %> - <%= pkg.description %> \n(C) 2013 - <%= pkg.author %> \nLicense: <%= pkg.license %> \nSource: <%= pkg.url %> \nDate Compiled: <%= grunt.template.today("yyyy-mm-dd") %> \n*/\n'
+            },
             dist: {
                 src: ['src/provider.js', 'src/directive.js', 'src/module.js'],
                 dest: 'ngProgress.js'
