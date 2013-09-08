@@ -19,9 +19,13 @@ angular.module('ngProgress.provider', ['ngProgress.directive'])
                 $scope = $rootScope,
                 $body = $document.find('body');
 
+            // Compile the directive
             var progressbarEl = $compile('<ng-progress></ng-progress>')($scope);
+            // Add the element to body
             $body.append(progressbarEl);
+            // Set the initial height
             $scope.count = count;
+            // If height or color isn't undefined, set the height, background-color and color.
             if (height !== undefined) {
                 progressbarEl.eq(0).children().css('height', height);
             }
@@ -29,6 +33,7 @@ angular.module('ngProgress.provider', ['ngProgress.directive'])
                 progressbarEl.eq(0).children().css('background-color', color);
                 progressbarEl.eq(0).children().css('color', color);
             }
+            // The ID for the interval controlling start()
             var intervalCounterId = 0;
             return {
                 // Starts the animation and adds between 0 - 5 percent to loading
