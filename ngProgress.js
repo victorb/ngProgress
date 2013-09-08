@@ -1,9 +1,9 @@
-// Here is the business logic that we will use for the progress
-/*globals angular:true*/
-/**
-* ngProgress.provider Module
-*
-* This is the singleton that handles the actual progress of ngProgress
+/*
+ngProgress 0.0.3 - slim, site-wide progressbar for AngularJS 
+(C) 2013 - Victor Bjelkholm 
+License: MIT 
+Source: https://github.com/VictorBjelkholm/ngProgress 
+Date Compiled: 2013-09-08 
 */
 angular.module('ngProgress.provider', ['ngProgress.directive'])
     .provider('ngProgress', function () {
@@ -25,9 +25,13 @@ angular.module('ngProgress.provider', ['ngProgress.directive'])
                 $scope = $rootScope,
                 $body = $document.find('body');
 
+            // Compile the directive
             var progressbarEl = $compile('<ng-progress></ng-progress>')($scope);
+            // Add the element to body
             $body.append(progressbarEl);
+            // Set the initial height
             $scope.count = count;
+            // If height or color isn't undefined, set the height, background-color and color.
             if (height !== undefined) {
                 progressbarEl.eq(0).children().css('height', height);
             }
@@ -35,6 +39,7 @@ angular.module('ngProgress.provider', ['ngProgress.directive'])
                 progressbarEl.eq(0).children().css('background-color', color);
                 progressbarEl.eq(0).children().css('color', color);
             }
+            // The ID for the interval controlling start()
             var intervalCounterId = 0;
             return {
                 // Starts the animation and adds between 0 - 5 percent to loading
@@ -155,14 +160,17 @@ angular.module('ngProgress.provider', ['ngProgress.directive'])
             return this.height;
         };
     });
-// Here we have our dom manipulation
-/*globals angular:true*/
 angular.module('ngProgress.directive', [])
     .directive('ngProgress', function ($window, $rootScope) {
         var directiveObj = {
+            // Replace the directive
             replace: true,
+            // Only use as a element
             restrict: 'E',
             link: function ($scope, $element, $attrs, $controller) {
+                // Watch the count on the $rootScope. As soon as count changes to something that
+                // isn't undefined or null, change the counter on $scope and also the width of
+                // the progressbar. The same goes for color and height on the $rootScope
                 $rootScope.$watch('count', function (newVal) {
                     if (newVal !== undefined || newVal !== null) {
                         $scope.counter = newVal;
@@ -183,10 +191,9 @@ angular.module('ngProgress.directive', [])
                     }
                 });
             },
+            // The actual html that will be used
             template: '<div id="ngProgress-container"><div id="ngProgress"></div></div>'
         };
         return directiveObj;
     });
-// Here is the main module
-
 angular.module('ngProgress', ['ngProgress.directive', 'ngProgress.provider']);
