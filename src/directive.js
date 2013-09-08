@@ -1,43 +1,32 @@
 // Here we have our dom manipulation
 /*globals angular:true*/
 angular.module('ngProgress.directive', [])
-    .directive('ngProgress', function ($window) {
+    .directive('ngProgress', function ($window, $rootScope) {
         var directiveObj = {
             replace: true,
             restrict: 'E',
-            // scope: {
-            //     'counter': '='
-            // },
-            link: function ($scope, $attrs, $element, $controller) {
-                // $scope.counter = counter;
-                // console.log($attrs.counter);
-                // console.log($scope.counter);
-                // console.log('window count');
-                // console.log($window.count);
-                // $scope.$watch('counter', function (newVal) {
-                //     console.log(newVal);
-                //     if(newVal !== undefined) {
-                //         console.log(newVal);
-                //     }
-                // });
-
-                $scope.counter = $window.count;
-
-                console.log('linking');
-                console.log()
-
-                // console.log(ngProgress.status());
-                // console.log(ngProgress.start());
-                // console.log(ngProgress.stop());
-                // console.log(ngProgress.status());
-
-                // setInterval(function(){
-                //     console.log('========================checking count');
-                //     console.log(ngProgress);
-                // }, 500)
-
+            link: function ($scope, $element, $attrs, $controller) {
+                $rootScope.$watch('count', function (newVal) {
+                    if (newVal !== undefined || newVal !== null) {
+                        $scope.counter = newVal;
+                        $element.eq(0).children().css('width', newVal + '%');
+                    }
+                });
+                $rootScope.$watch('color', function (newVal) {
+                    if (newVal !== undefined || newVal !== null) {
+                        $scope.color = newVal;
+                        $element.eq(0).children().css('background-color', newVal);
+                        $element.eq(0).children().css('color', newVal);
+                    }
+                });
+                $rootScope.$watch('height', function (newVal) {
+                    if (newVal !== undefined || newVal !== null) {
+                        $scope.height = newVal;
+                        $element.eq(0).children().css('height', newVal);
+                    }
+                });
             },
-            template: '<p>hello {{ counter }}</p>'
+            template: '<div id="ngProgress-container"><div id="ngProgress"></div></div>'
         };
         return directiveObj;
     });
