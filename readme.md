@@ -10,61 +10,61 @@ Download ngProgress.js manually or install with bower
 
 ```bower install ngprogress```
 
-Include ngProgress.js in your website.
+Include ngProgress.js or ngProgress.min.js in your website.
 
-```<script src="app/components/ngProgress/ngProgress.js"></script>```
+```<script src="app/components/ngProgress/ngProgress.min.js"></script>```
 
 Inject ngProgress provider in controller
 
-```var MainCtrl = function($scope, $timeout, progressbar) {
+```var MainCtrl = function($scope, $timeout, ngProgress) {
 }```
 
 Use with the API down below
 
 ```
-progressbar.start();
-$timeout(progressbar.complete(), 1000);
+ngProgress.start();
+$timeout(ngProgress.complete(), 1000);
 ```
 
 ## API
 ```
 // Starts the animation and adds between 0 - 5 percent to loading
-// each 400 milliseconds. Should always be finished with progressbar.complete()
+// each 400 milliseconds. Should always be finished with ngProgress.complete()
 // to hide it
 
-progressbar.start();
+ngProgress.start();
 
 // Sets the height of the progressbar. Use any valid CSS value
 // Eg '10px', '1em' or '1%'
 
-progressbar.height();
+ngProgress.height();
 
 // Sets the color of the progressbar and it's shadow. Use any valid HTML
 // color
 
-progressbar.color();
+ngProgress.color();
 
 // Returns on how many percent the progressbar is at. Should'nt be needed
 
-progressbar.status();
+ngProgress.status();
 
 // Stops the progressbar at it's current location
 
-progressbar.stop();
+ngProgress.stop();
 
 // Set's the progressbar percentage. Use a number between 0 - 100. 
 // If 100 is provided, complete will be called.
 
-progressbar.set();
+ngProgress.set();
 
 // Resets the progressbar to percetage 0 and therefore will be hided after
 // it's rollbacked
 
-progressbar.reset();
+ngProgress.reset();
 
 // Jumps to 100% progress and fades away progressbar.
 
-progressbar.complete();
+ngProgress.complete();
 ```
 
 ##License
