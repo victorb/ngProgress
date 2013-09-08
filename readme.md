@@ -10,9 +10,10 @@ Download ngProgress.js manually or install with bower
 
 ```bower install ngprogress```
 
-Include ngProgress.js or ngProgress.min.js in your website.
+Include ngProgress.js ( or ngProgress.min.js) and ngProgress.css in your website.
 
 ```<script src="app/components/ngProgress/ngProgress.min.js"></script>```
+```<link rel="stylesheet" href="ngProgress.css">```
 
 Inject ngProgress provider in controller
 

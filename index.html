@@ -92,7 +92,7 @@
             The jQuery dependency didn't exactly helped me so I've created my own AngularJS Provider that I can use for my heavy-applications. Try it out, fork it and submit a pull request if you want!
         </p>
         <p>
-            Right now, the plugin weighs 5kb, containes 8 different methods and have a dependency on Angular (duh).
+            Right now, the plugin weighs 8kb, containes 12 different methods and have a dependency on Angular (duh).
         </p>
         <p>
             Reach out to me on Twitter ( <a href="https://twitter.com/VictorBjelkholm" target="_blank">@VictorBjelkholm</a> ) if you have feedback, critics
@@ -108,10 +108,12 @@
 <pre>bower install ngprogress</pre>
         </p>
         <p>
-            Include ngProgress.js in your application
+            Include ngProgress.js ( or ngProgress.min.js) and ngProgress.css in your website.
 <pre>
 &lt;script src="app/components/ngProgress/ngProgress.js"&gt;&lt;/script&gt;
+&lt;link rel="stylesheet" href="ngProgress.css"&gt;
 </pre>
+
         </p>
         <p>
             
@@ -123,14 +125,14 @@ var app = angular.module('progressApp', ['ngProgress']);
         <p>
             Inject progressbar-provider in the controller where you need it
 <pre>
-var MainCtrl = function($scope, progressbar) {
+var MainCtrl = function($scope, ngProgress) {
 }
 </pre>
         </p>
         <p>
             Use be following the API below or checking out the source to this page.
 <pre>
-    progressbar.start();
+    ngProgress.start();
 </pre>
         </p>
         </div>
@@ -197,45 +199,45 @@ var MainCtrl = function($scope, progressbar) {
         <h2>
             API
         </h2>
-<pre>progressbar.start();</pre>
+<pre>ngProgress.start();</pre>
 <p>
     Starts the animation and adds between 0 - 5 percent to loading
     each 400 milliseconds. Should always be finished with progressbar.complete()
     to hide it
 </p>
 
-<pre>progressbar.height();</pre>
+<pre>ngProgress.height();</pre>
 <p>
     Sets the height of the progressbar. Use any valid CSS value
     Eg '10px', '1em' or '1%'
 </p>
 
-<pre>progressbar.color();</pre>
+<pre>ngProgress.color();</pre>
 <p>
     Sets the color of the progressbar and it's shadow. Use any valid HTML
     color
 </p>
 
-<pre>progressbar.status();</pre>
+<pre>ngProgress.status();</pre>
 <p>Returns on how many percent the progressbar is at. Should'nt be needed</p>
 
-<pre>progressbar.stop();</pre>
+<pre>ngProgress.stop();</pre>
 <p>Stops the progressbar at it's current location</p>
 
 
-<pre>progressbar.set();</pre>
+<pre>ngProgress.set();</pre>
 <p>
     Set's the progressbar percentage. Use a number between 0 - 100. 
     If 100 is provided, complete will be called.
 </p>
 
-<pre>progressbar.reset();</pre>
+<pre>ngProgress.reset();</pre>
 <p>
     Resets the progressbar to percetage 0 and therefore will be hided after
     it's rollbacked
 </p>
 
-<pre>progressbar.complete();</pre>
+<pre>ngProgress.complete();</pre>
 <p>
     Jumps to 100% progress and fades away progressbar.
 </p>
