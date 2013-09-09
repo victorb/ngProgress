@@ -1,6 +1,6 @@
 {
     "name": "ngprogress",
-    "version": "1.01",
+    "version": "1.0.1",
     "main": "build/ngProgress.js",
     "ignore": [
         "**/.*",
