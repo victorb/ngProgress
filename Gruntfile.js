@@ -28,8 +28,8 @@ module.exports = function (grunt) {
                 banner: '/*\n<%= pkg.name %> <%= pkg.version %> - <%= pkg.description %> \n(C) 2013 - <%= pkg.author %> \nLicense: <%= pkg.license %> \nSource: <%= pkg.url %> \nDate Compiled: <%= grunt.template.today("yyyy-mm-dd") %> \n*/\n'
             },
             build: {
-                src: '<%= pkg.name %>.js',
-                dest: '<%= pkg.name %>.min.js'
+                src: 'build/<%= pkg.name %>.js',
+                dest: 'build/<%= pkg.name %>.min.js'
             }
         },
         jshint: {
