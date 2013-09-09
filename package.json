@@ -26,6 +26,8 @@
   "devDependencies": {
     "grunt-contrib-concat": "~0.3.0",
     "grunt-karma": "~0.7.0",
+    "grunt-contrib-uglify": "~0.2.2",
+    "grunt-contrib-jshint": "~0.6.0",
     "karma": "~0.10",
     "karma-jasmine": "~0.1"
   },
