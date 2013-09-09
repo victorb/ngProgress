@@ -20,7 +20,7 @@ module.exports = function (grunt) {
             },
             dist: {
                 src: ['src/provider.js', 'src/directive.js', 'src/module.js'],
-                dest: 'ngProgress.js'
+                dest: 'build/ngProgress.js'
             }
         },
         uglify: {
