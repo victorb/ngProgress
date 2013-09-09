@@ -1,5 +1,7 @@
 ## ngProgress.js
 
+[![Build Status](https://travis-ci.org/VictorBjelkholm/ngProgress.png?branch=master)](https://travis-ci.org/VictorBjelkholm/ngProgress)
+
 ngProgress is a provider for angular for showing a loading status of something.
 Use cases can be fetching external resources, showing a action taking more-than-normal length
 or simple loading between the page views. Prefereble, only for resource heavy sites.
