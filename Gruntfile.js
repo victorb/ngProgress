@@ -1,3 +1,5 @@
+var fs = require('fs');
+
 module.exports = function (grunt) {
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
@@ -39,6 +41,18 @@ module.exports = function (grunt) {
             all: 'src/*.js'
         }
     });
+
+    // use as: grunt version:1.0.1
+    grunt.registerTask('version', function(file_version){
+        var bower = grunt.file.readJSON('bower.json');
+        var npm_package = grunt.file.readJSON('package.json');
+
+        bower.version = file_version;
+        npm_package.version = file_version;
+
+        fs.writeFileSync('bower.json', JSON.stringify(bower, null, 4));
+        fs.writeFileSync('package.json', JSON.stringify(npm_package, null, 4));
+    })
 
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-jshint');
