@@ -1,12 +1,12 @@
 {
-  "name": "ngprogress",
-  "version": "1.0.0",
-  "main": "build/ngProgress.js",
-  "ignore": [
-    "**/.*",
-    "node_modules",
-    "bower_components",
-    "test",
-    "tests"
-  ]
+    "name": "ngprogress",
+    "version": "1.01",
+    "main": "build/ngProgress.js",
+    "ignore": [
+        "**/.*",
+        "node_modules",
+        "bower_components",
+        "test",
+        "tests"
+    ]
 }

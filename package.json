@@ -1,37 +1,37 @@
 {
-  "name": "ngProgress",
-  "version": "1.0.0",
-  "description": "slim, site-wide progressbar for AngularJS",
-  "main": "ngProgress.js",
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/VictorBjelkholm/ngProgress.git"
-  },
-  "keywords": [
-    "angular",
-    "ng-progress",
-    "ngProgress",
-    "angular",
-    "progress",
-    "bar"
-  ],
-  "author": "Victor Bjelkholm",
-  "license": "MIT",
-  "readmeFilename": "readme.md",
-  "gitHead": "75f7f7207ee9f13d43c41fc1ef03eb0180268f59",
-  "url": "https://github.com/VictorBjelkholm/ngProgress",
-  "bugs": {
-    "url": "https://github.com/VictorBjelkholm/ngProgress/issues"
-  },
-  "devDependencies": {
-    "grunt-contrib-concat": "~0.3.0",
-    "grunt-karma": "~0.7.0",
-    "grunt-contrib-uglify": "~0.2.2",
-    "grunt-contrib-jshint": "~0.6.0",
-    "karma": "~0.10",
-    "karma-jasmine": "~0.1"
-  },
-  "scripts": {
-    "test": "./node_modules/.bin/karma start --single-run --browsers PhantomJS"
-  }
+    "name": "ngProgress",
+    "version": "1.01",
+    "description": "slim, site-wide progressbar for AngularJS",
+    "main": "ngProgress.js",
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/VictorBjelkholm/ngProgress.git"
+    },
+    "keywords": [
+        "angular",
+        "ng-progress",
+        "ngProgress",
+        "angular",
+        "progress",
+        "bar"
+    ],
+    "author": "Victor Bjelkholm",
+    "license": "MIT",
+    "readmeFilename": "readme.md",
+    "gitHead": "75f7f7207ee9f13d43c41fc1ef03eb0180268f59",
+    "url": "https://github.com/VictorBjelkholm/ngProgress",
+    "bugs": {
+        "url": "https://github.com/VictorBjelkholm/ngProgress/issues"
+    },
+    "devDependencies": {
+        "grunt-contrib-concat": "~0.3.0",
+        "grunt-karma": "~0.7.0",
+        "grunt-contrib-uglify": "~0.2.2",
+        "grunt-contrib-jshint": "~0.6.0",
+        "karma": "~0.10",
+        "karma-jasmine": "~0.1"
+    },
+    "scripts": {
+        "test": "./node_modules/.bin/karma start --single-run --browsers PhantomJS"
+    }
 }
