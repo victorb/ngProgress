@@ -1,8 +1,11 @@
+<!doctype html>
 <html ng-app="progressApp">
 <head>
-    <title>ngProgress - slim, site-wide progressbar for AngularJS</title>
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+    <title>ngProgress - A slim, site-wide progressbar for AngularJS</title>
     <style>
-         * {
+         body {
             margin: 0px;
             padding: 0px;
          }
@@ -14,29 +17,34 @@
          #title {
             font-family: Georgia;
             text-align: center;
-            font-size: 2em;
+            font-size: 1.5em;
+         }
+         @media screen and (min-width:800px){
+            #title {
+                font-size:2em;
+            }
          }
 
          p {
-            margin: 1em;
+            margin: 1em 0 1em 1em;
+         }
+
+         pre {
+            margin: 0 0 0 1em;
          }
 
          div {
-            margin: 1em;
+            margin: 1em 0;
          }
 
-         #header a, #demo a {
+         #header a, #demo a, pre {
            display: inline-block;
            padding: 6px 12px;
            margin-bottom: 0;
            font-size: 14px;
            font-weight: normal;
            line-height: 1.428571429;
-           text-align: center;
-           white-space: nowrap;
-           vertical-align: middle;
-           cursor: pointer;
-           border: 1px solid transparent;
+           border: 1px solid #CCC;
            border-radius: 4px;
            -webkit-user-select: none;
               -moz-user-select: none;
@@ -45,7 +53,14 @@
                    user-select: none;
             color: #333333;
             background-color: #ffffff;
-            border-color: #cccccc;
+            white-space: pre-wrap;
+
+         }
+
+         #header a, #demo a {
+           text-align: center;
+           vertical-align: middle;
+           cursor: pointer;
          }
 
          a:hover {
@@ -54,8 +69,9 @@
          }
 
          .container {
-            width: 500px;
+            max-width: 600px;
             margin: 1em auto;
+            padding: 0 0.5em;
          }
 
          .container hr {
@@ -70,11 +86,11 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.1/angular.min.js"></script>
 </head>
 <body ng-controller="MainCtrl">
-<style>#forkongithub a{background:#000;color:#fff;text-decoration:none;font-family:arial, sans-serif;text-align:center;font-weight:bold;padding:5px 40px;font-size:1rem;line-height:2rem;position:relative;transition:0.5s;}#forkongithub a:hover{background:#060;color:#fff;}#forkongithub a::before,#forkongithub a::after{content:"";width:100%;display:block;position:absolute;top:1px;left:0;height:1px;background:#fff;}#forkongithub a::after{bottom:1px;top:auto;}@media screen and (min-width:800px){#forkongithub{position:absolute;display:block;top:0;right:0;width:200px;overflow:hidden;height:200px;}#forkongithub a{width:200px;position:absolute;top:60px;right:-60px;transform:rotate(45deg);-webkit-transform:rotate(45deg);box-shadow:4px 4px 10px rgba(0,0,0,0.8);}}</style><span id="forkongithub"><a href="https://github.com/victorbjelkholm/ngprogress" target="_blank">Fork me on GitHub</a></span>
+<style>#forkongithub a{background:#000;color:#fff;text-decoration:none;font-family:arial, sans-serif;text-align:center;font-weight:bold;padding:5px 0;font-size:1rem;line-height:2rem;position:relative;transition:0.5s;display:block;width:100%;}#forkongithub a:hover{background:#060;color:#fff;}#forkongithub a::before,#forkongithub a::after{content:"";width:100%;display:block;position:absolute;top:1px;left:0;height:1px;background:#fff;}#forkongithub a::after{bottom:1px;top:auto;}@media screen and (min-width:800px){#forkongithub{position:absolute;display:block;top:0;right:0;width:200px;overflow:hidden;height:200px;}#forkongithub a{width:200px;padding:5px 40px;position:absolute;top:60px;right:-60px;transform:rotate(45deg);-webkit-transform:rotate(45deg);box-shadow:4px 4px 10px rgba(0,0,0,0.8);}}</style><span id="forkongithub"><a href="https://github.com/victorbjelkholm/ngprogress" target="_blank">Fork me on GitHub</a></span>
     <div id="title">
         <strong>ngProgress</strong>
         <br>
-        Slim, site-wide progressbar for Angular
+        A slim, site-wide progressbar for AngularJS
     </div>
     <div class="container" ng-show="show">
         <div id="header">
@@ -86,16 +102,16 @@
         </div>
         <p>
             I recently saw Youtube's and Medium's new loading bars (and Medium don't get it)
-            and was interested in implementing it on my own. In comes NProgress ( <a href="https://github.com/rstacruz/nprogress" target="_blank">https://github.com/rstacruz/nprogress</a> ), a jQuery dependent plugin for the effect.
+            and was interested in implementing it on my own. In comes <a href="https://github.com/rstacruz/nprogress" target="_blank">NProgress</a>, a jQuery dependent plugin that creates this effect.
         </p>
         <p>
-            The jQuery dependency didn't exactly helped me so I've created my own AngularJS Provider that I can use for my heavy-applications. Try it out, fork it and submit a pull request if you want!
+            I didn't think the plugin needed a jQuery dependency, so I created my own AngularJS Provider that I can use for my heavy-applications. Try it out, fork it and submit a pull request if you want!
         </p>
         <p>
-            Right now, the plugin weighs 8kb, containes 12 different methods and have a dependency on Angular (duh).
+            Right now, the plugin weighs 8kb, contains 12 different methods and has a dependency on Angular (duh).
         </p>
         <p>
-            Reach out to me on Twitter ( <a href="https://twitter.com/VictorBjelkholm" target="_blank">@VictorBjelkholm</a> ) if you have feedback, critics
+            Reach out to me on Twitter ( <a href="https://twitter.com/VictorBjelkholm" target="_blank">@VictorBjelkholm</a> ) if you have feedback, criticisms
             or just want someone to blame for your problems. Or, visit the <a href="https://github.com/VictorBjelkholm/ngProgress/" target="_blank">Github repository</a>
         </p>
         <div id="installation">
@@ -104,9 +120,12 @@
             Installation
         </h2>
         <p>
-            Download <a href="https://raw.github.com/VictorBjelkholm/ngProgress/master/ngProgress.js" target="_blank">ngProgress.js</a> manually or install with bower
+        <strong>Manual:</strong> Download <a href="https://raw.github.com/VictorBjelkholm/ngProgress/master/build/ngProgress.js" target="_blank">ngProgress.js</a> or <a href="https://raw.github.com/VictorBjelkholm/ngProgress/master/build/ngProgress.min.js" target="_blank">ngProgress.min.js</a>
+        </p>
+        <p><strong>Automatic:</strong> Install using bower:
 <pre>bower install ngprogress</pre>
         </p>
+        <h2>Usage</h2>
         <p>
             Include ngProgress.js ( or ngProgress.min.js) and ngProgress.css in your website.
 <pre>
@@ -117,22 +136,22 @@
         </p>
         <p>
             
-            Set ngProgress as dependency in your module
+            Set ngProgress as a dependency in your module
 <pre>
 var app = angular.module('progressApp', ['ngProgress']);
 </pre>
         </p>
         <p>
-            Inject progressbar-provider in the controller where you need it
+            Inject progressbar-provider in the controller where you plan to use it
 <pre>
 var MainCtrl = function($scope, ngProgress) {
 }
 </pre>
         </p>
         <p>
-            Use be following the API below or checking out the source to this page.
+            Use this command to start the progress bar. The <a href="#API">ngProgress API</a> will show you how to manipulate ngProgress.
 <pre>
-    ngProgress.start();
+ngProgress.start();
 </pre>
         </p>
         </div>
@@ -182,65 +201,45 @@ var MainCtrl = function($scope, ngProgress) {
         </div>
         <div id="share">
             <h2>Share</h2>
-            <p>Since the providers quality depends on peer-review, please review it yourself or share it to people that like to review stuff. I would be forever grateful and buy you an coffee if you are in Barcelona</p>
+            <p>Since the providers quality depends on peer-review, please review it yourself or share it to people that like to review stuff. I would be forever grateful and buy you a coffee if you are in Barcelona.</p>
             <div>
-            <iframe src="http://ghbtns.com/github-btn.html?user=victorbjelkholm&repo=ngprogress&type=watch&count=true"
-          allowtransparency="true" frameborder="0" scrolling="0" width="100" height="20"></iframe>
-      <iframe src="http://ghbtns.com/github-btn.html?user=victorbjelkholm&type=follow&count=true"
-          allowtransparency="true" frameborder="0" scrolling="0" width="175" height="20"></iframe><br/>
+                <iframe src="http://ghbtns.com/github-btn.html?user=victorbjelkholm&amp;repo=ngprogress&amp;type=watch&amp;count=true" allowtransparency="true" frameborder="0" scrolling="0" width="100" height="20"></iframe>
+                <iframe src="http://ghbtns.com/github-btn.html?user=victorbjelkholm&amp;type=follow&amp;count=true" allowtransparency="true" frameborder="0" scrolling="0" width="175" height="20"></iframe><br/>
                 <a href="http://news.ycombinator.com/submit" class="hn-share-button">Vote on HN</a>
                 <a href="https://twitter.com/share" class="twitter-share-button" data-via="VictorBjelkholm" data-hashtags="angularjs">Tweet</a>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-<div style="margin:0;padding:0;display:inline;" class="g-plusone" data-action="share" data-annotation="inline" data-width="200"></div>
+                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+                <div style="margin:0;padding:0;display:inline;" class="g-plusone" data-action="share" data-annotation="inline" data-width="200"></div>
             </div>
 
         </div>
         <div id="api">
-        <h2>
-            API
-        </h2>
-<pre>ngProgress.start();</pre>
-<p>
-    Starts the animation and adds between 0 - 5 percent to loading
-    each 400 milliseconds. Should always be finished with progressbar.complete()
-    to hide it
-</p>
+            <h2>
+                API
+            </h2>
+            <pre>ngProgress.start();</pre>
+            <p>Starts the animation and adds between 0 - 5 percent to the loading percentage every 400 milliseconds. Should always be finished with progressbar.complete() to hide it.</p>
 
-<pre>ngProgress.height();</pre>
-<p>
-    Sets the height of the progressbar. Use any valid CSS value
-    Eg '10px', '1em' or '1%'
-</p>
+            <pre>ngProgress.height();</pre>
+            <p>Sets the height of the progressbar. Use any valid CSS value Eg '10px', '1em' or '1%'.</p>
 
-<pre>ngProgress.color();</pre>
-<p>
-    Sets the color of the progressbar and it's shadow. Use any valid HTML
-    color
-</p>
+            <pre>ngProgress.color();</pre>
+            <p>Sets the color of the progressbar and it's shadow. Use any valid HTML color</p>
 
-<pre>ngProgress.status();</pre>
-<p>Returns on how many percent the progressbar is at. Should'nt be needed</p>
+            <pre>ngProgress.status();</pre>
+            <p>Returns the current percent value the progressbar is at. Should'nt be needed.</p>
 
-<pre>ngProgress.stop();</pre>
-<p>Stops the progressbar at it's current location</p>
+            <pre>ngProgress.stop();</pre>
+            <p>Stops the progressbar at its current location.</p>
 
 
-<pre>ngProgress.set();</pre>
-<p>
-    Set's the progressbar percentage. Use a number between 0 - 100. 
-    If 100 is provided, complete will be called.
-</p>
+            <pre>ngProgress.set();</pre>
+            <p>Sets the progressbar percentage value. Use a number between 0 - 100. If 100 is provided, complete will be called.</p>
 
-<pre>ngProgress.reset();</pre>
-<p>
-    Resets the progressbar to percetage 0 and therefore will be hided after
-    it's rollbacked
-</p>
+            <pre>ngProgress.reset();</pre>
+            <p>Resets the progressbar to percentage 0 and will be hiden after it's rolled back.</p>
 
-<pre>ngProgress.complete();</pre>
-<p>
-    Jumps to 100% progress and fades away progressbar.
-</p>
+            <pre>ngProgress.complete();</pre>
+            <p>Jumps to 100% progress and fades away progressbar.</p>
         </div>
         <div id="license">
             <h2>License</h2>
