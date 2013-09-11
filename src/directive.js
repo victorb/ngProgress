@@ -1,7 +1,7 @@
 // Here we have the directive that we append to the body. It handles all the things related to the
 // styling and DOM
 angular.module('ngProgress.directive', [])
-    .directive('ngProgress', function ($window, $rootScope) {
+    .directive('ngProgress', ["$window", "$rootScope", function ($window, $rootScope) {
         var directiveObj = {
             // Replace the directive
             replace: true,
@@ -35,4 +35,4 @@ angular.module('ngProgress.directive', [])
             template: '<div id="ngProgress-container"><div id="ngProgress"></div></div>'
         };
         return directiveObj;
-    });
+    }]);

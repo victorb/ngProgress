@@ -1,9 +1,9 @@
 /*
-ngProgress 1.0.0 - slim, site-wide progressbar for AngularJS 
-(C) 2013 - Victor Bjelkholm 
-License: MIT 
-Source: https://github.com/VictorBjelkholm/ngProgress 
-Date Compiled: 2013-09-09 
+ngProgress 1.0.0 - slim, site-wide progressbar for AngularJS
+(C) 2013 - Victor Bjelkholm
+License: MIT
+Source: https://github.com/VictorBjelkholm/ngProgress
+Date Compiled: 2013-09-09
 */
 angular.module('ngProgress.provider', ['ngProgress.directive'])
     .provider('ngProgress', function () {
@@ -109,7 +109,7 @@ angular.module('ngProgress.provider', ['ngProgress.directive'])
                 stop: function () {
                     clearInterval(intervalCounterId);
                 },
-                // Set's the progressbar percentage. Use a number between 0 - 100. 
+                // Set's the progressbar percentage. Use a number between 0 - 100.
                 // If 100 is provided, complete will be called.
                 set: function (new_count) {
                     this.show();
@@ -161,7 +161,7 @@ angular.module('ngProgress.provider', ['ngProgress.directive'])
         };
     });
 angular.module('ngProgress.directive', [])
-    .directive('ngProgress', function ($window, $rootScope) {
+    .directive('ngProgress', ["$window", "$rootScope", function ($window, $rootScope) {
         var directiveObj = {
             // Replace the directive
             replace: true,
@@ -195,5 +195,5 @@ angular.module('ngProgress.directive', [])
             template: '<div id="ngProgress-container"><div id="ngProgress"></div></div>'
         };
         return directiveObj;
-    });
+    }]);
 angular.module('ngProgress', ['ngProgress.directive', 'ngProgress.provider']);
