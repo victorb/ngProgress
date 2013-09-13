@@ -1,9 +1,9 @@
 /*
-ngProgress 1.0.2 - slim, site-wide progressbar for AngularJS 
+ngProgress 1.0.3 - slim, site-wide progressbar for AngularJS 
 (C) 2013 - Victor Bjelkholm 
 License: MIT 
 Source: https://github.com/VictorBjelkholm/ngProgress 
-Date Compiled: 2013-09-12 
+Date Compiled: 2013-09-13 
 */
 angular.module('ngProgress.provider', ['ngProgress.directive'])
     .provider('ngProgress', function () {
@@ -64,7 +64,9 @@ angular.module('ngProgress.provider', ['ngProgress.directive'])
                 },
                 updateCount: function (new_count) {
                     $scope.count = new_count;
-                    $scope.$apply();
+                    if(!$scope.$$phase) {
+                        $scope.$apply();
+                    }
                 },
                 // Sets the height of the progressbar. Use any valid CSS value
                 // Eg '10px', '1em' or '1%'
