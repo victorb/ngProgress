@@ -68,7 +68,9 @@ angular.module('ngProgress.provider', ['ngProgress.directive'])
                     if (new_height !== undefined) {
                         height = new_height;
                         $scope.height = height;
-                        $scope.$apply();
+                        if(!$scope.$$phase) {
+                            $scope.$apply();
+                        }
                     }
                     return height;
                 },
@@ -78,7 +80,9 @@ angular.module('ngProgress.provider', ['ngProgress.directive'])
                     if (new_color !== undefined) {
                         color = new_color;
                         $scope.color = color;
-                        $scope.$apply();
+                        if(!$scope.$$phase) {
+                            $scope.$apply();
+                        }
                     }
                     return color;
                 },
