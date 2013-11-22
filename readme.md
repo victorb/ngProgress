@@ -17,6 +17,11 @@ Include ngProgress.js ( or ngProgress.min.js) and ngProgress.css in your website
 ```<script src="app/components/ngProgress/ngProgress.min.js"></script>```
 ```<link rel="stylesheet" href="ngProgress.css">```
 
+Set ngProgress as a dependency in your module
+
+```var app = angular.module('progressApp', ['ngProgress']);```
+
+
 Inject ngProgress provider in controller
 
 ```var MainCtrl = function($scope, $timeout, ngProgress) {
