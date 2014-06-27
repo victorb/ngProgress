@@ -5,8 +5,6 @@ angular.module('ngProgress.provider', ['ngProgress.directive'])
         //Default values for provider
         this.autoStyle = true;
         this.count = 0;
-        this.height = '2px';
-        this.color = 'firebrick';
 
         this.$get = ['$document',
             '$window',
