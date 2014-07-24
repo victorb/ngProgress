@@ -64,9 +64,15 @@ describe('How the provider should work', function () {
         this.progressbar.complete();
         expect(this.progressbar.status()).toBe(100);
     });
+    it('return current height when calling height() without parameters', function () {
+        expect(this.progressbar.height()).toBe('2px');
+    });
     it('set the height when calling height() with parameter', function () {
         this.progressbar.height('5px');
         expect(this.progressbar.height()).toBe('5px');
+    });
+    it('return current color when calling color() without parameters', function () {
+        expect(this.progressbar.color()).toBe('firebrick');
     });
     it('set the color when calling color() with parameter', function () {
         this.progressbar.color('green');
