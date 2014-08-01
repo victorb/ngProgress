@@ -51,6 +51,7 @@ angular.module('ngProgress.provider', ['ngProgress.directive'])
                     // https://developer.mozilla.org/en-US/docs/Web/API/window.requestAnimationFrame
                     this.show();
                     var self = this;
+                    clearInterval(intervalCounterId);
                     intervalCounterId = setInterval(function () {
                         if (isNaN(count)) {
                             clearInterval(intervalCounterId);
