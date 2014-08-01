@@ -3,7 +3,7 @@ ngProgress 1.0.4 - slim, site-wide progressbar for AngularJS
 (C) 2013 - Victor Bjelkholm 
 License: MIT 
 Source: https://github.com/VictorBjelkholm/ngProgress 
-Date Compiled: 2014-05-24 
+Date Compiled: 2014-08-01 
 */
 angular.module('ngProgress.provider', ['ngProgress.directive'])
     .provider('ngProgress', function () {
@@ -41,6 +41,7 @@ angular.module('ngProgress.provider', ['ngProgress.directive'])
             }
             // The ID for the interval controlling start()
             var intervalCounterId = 0;
+            var animation;
             return {
                 // Starts the animation and adds between 0 - 5 percent to loading
                 // each 400 milliseconds. Should always be finished with progressbar.complete()
@@ -95,17 +96,24 @@ angular.module('ngProgress.provider', ['ngProgress.directive'])
                 hide: function () {
                     progressbarEl.children().css('opacity', '0');
                     var self = this;
-                    $timeout(function () {
+                    self.animate(function () {
                         progressbarEl.children().css('width', '0%');
-                        $timeout(function () {
+                        self.animate(function () {
                             self.show();
                         }, 500);
                     }, 500);
                 },
                 show: function () {
-                    $timeout(function () {
+                    var self = this;
+                    self.animate(function () {
                         progressbarEl.children().css('opacity', '1');
                     }, 100);
+                },
+                // Cancel any prior animations before running new ones.
+                // Multiple simultaneous animations just look weird.
+                animate: function(fn, time) {
+                    if(animation) { $timeout.cancel(animation); }
+                    animation = $timeout(fn, time);
                 },
                 // Returns on how many percent the progressbar is at. Should'nt be needed
                 status: function () {
