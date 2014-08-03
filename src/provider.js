@@ -143,6 +143,7 @@ angular.module('ngProgress.provider', ['ngProgress.directive'])
                     count = 100;
                     this.updateCount(count);
                     var self = this;
+                    clearInterval(intervalCounterId);
                     $timeout(function () {
                         self.hide();
                         $timeout(function () {

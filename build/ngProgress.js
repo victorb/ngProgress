@@ -3,7 +3,7 @@ ngProgress 1.0.4 - slim, site-wide progressbar for AngularJS
 (C) 2013 - Victor Bjelkholm 
 License: MIT 
 Source: https://github.com/VictorBjelkholm/ngProgress 
-Date Compiled: 2014-08-01 
+Date Compiled: 2014-08-03 
 */
 angular.module('ngProgress.provider', ['ngProgress.directive'])
     .provider('ngProgress', function () {
@@ -149,6 +149,7 @@ angular.module('ngProgress.provider', ['ngProgress.directive'])
                     count = 100;
                     this.updateCount(count);
                     var self = this;
+                    clearInterval(intervalCounterId);
                     $timeout(function () {
                         self.hide();
                         $timeout(function () {
