@@ -102,4 +102,44 @@ describe('How the provider should work', function () {
             expect(value).toBeLessThan(20);
         });
     });
+
+    it('frequently calling reset, start and complete should work', function () {
+
+        runs(function () { this.progressbar.reset(); });
+        waits(10);
+        runs(function () { this.progressbar.start(); });
+        waits(10);
+        runs(function () { this.progressbar.complete(); });
+        waits(10);
+        runs(function () { expect([1, this.progressbar.status()]).toEqual([1, 100]); });
+
+        runs(function () { this.progressbar.reset(); });
+        waits(10);
+        runs(function () { this.progressbar.start(); });
+        waits(10);
+        runs(function () { this.progressbar.complete(); });
+        waits(10);
+        runs(function () { expect([2, this.progressbar.status()]).toEqual([2, 100]); });
+
+
+        runs(function () { this.progressbar.reset(); });
+        waits(10);
+        runs(function () { this.progressbar.start(); });
+        waits(10);
+        runs(function () { this.progressbar.complete(); });
+        waits(10);
+        runs(function () { expect([3, this.progressbar.status()]).toEqual([3, 100]); });
+
+
+        waits(200);
+        runs(function () { expect([4, this.progressbar.status()]).toEqual([4, 100]); });
+
+        waits(200);
+        runs(function () { expect([5, this.progressbar.status()]).toEqual([5, 100]); });
+
+        waits(200);
+        runs(function () { expect([6, this.progressbar.status()]).toEqual([6, 100]); });
+
+    });
+
 });
