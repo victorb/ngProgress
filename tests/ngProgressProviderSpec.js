@@ -139,7 +139,23 @@ describe('How the provider should work', function () {
 
         waits(200);
         runs(function () { expect([6, this.progressbar.status()]).toEqual([6, 100]); });
-
     });
+    
+    it('allow you to change the parent of the progressbar', function () {
+        var domElement = this.progressbar.getDomElement()[0];
+        expect(domElement.parentNode).toEqual(document.body);
+
+        var div = document.createElement('div');
+        document.body.appendChild(div);
+        this.progressbar.setParent(div);
+        expect(domElement.parentNode).toEqual(div);
+    })
+    
+    it('throws exception when invalid parent is set', function () {
+        var that = this;
+        expect(function () {
+            that.progressbar.setParent(null);
+        }).toThrow(new Error('Provide a valid parent of type HTMLElement'));
+    })
 
 });
