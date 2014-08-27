@@ -1,6 +1,6 @@
 {
   "name": "ngProgress",
-    "version": "1.0.5",
+    "version": "1.0.6",
   "description": "slim, site-wide progressbar for AngularJS",
   "main": "ngProgress.js",
   "repository": {
