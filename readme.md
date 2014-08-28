@@ -78,7 +78,8 @@ ngProgress.complete();
 
 ngProgress.setParent(HTMLElement);
 
-// Gets the DOM element  which vsizualizes the progress bar. It is wrapped in as jqlite element - https://docs.angularjs.org/api/ng/function/angular.element
+// Gets the DOM element  which vsizualizes the progress bar.
+// It is wrapped in as jqlite element - https://docs.angularjs.org/api/ng/function/angular.element
 
 ngProgress.getDomElement();
 ```
