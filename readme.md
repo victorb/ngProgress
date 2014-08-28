@@ -60,7 +60,7 @@ ngProgress.status();
 
 ngProgress.stop();
 
-// Set's the progressbar percentage. Use a number between 0 - 100. 
+// Set's the progressbar percentage. Use a number between 0 - 100.
 // If 100 is provided, complete will be called.
 
 ngProgress.set();
@@ -73,6 +73,14 @@ ngProgress.reset();
 // Jumps to 100% progress and fades away progressbar.
 
 ngProgress.complete();
+
+// Changes the parent of the DOM element which visualizes the progress bar.
+
+ngProgress.setParent(HTMLElement);
+
+// Gets the DOM element  which vsizualizes the progress bar. It is wrapped in as jqlite element - https://docs.angularjs.org/api/ng/function/angular.element
+
+ngProgress.getDomElement();
 ```
 
 ##License
