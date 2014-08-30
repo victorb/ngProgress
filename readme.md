@@ -18,7 +18,7 @@ Include **ngProgress.js** ( or **ngProgress.min.js**) and **ngProgress.css** in 
 
 ```html
 <script src="app/components/ngProgress/ngProgress.min.js"></script>
-<link rel="stylesheet" href="ngProgress.css">`
+<link rel="stylesheet" href="ngProgress.css">
 ```
 
 Set **ngProgress** as a dependency in your module
@@ -32,7 +32,7 @@ Inject **ngProgress** provider in controller
 
 ```javascript
 var MainCtrl = function($scope, $timeout, ngProgress) {}
-	```
+```
 
 Use with the API down below
 
@@ -99,7 +99,7 @@ ngProgress.complete();
 ngProgress.setParent(document.getElementById('container'));
 ```
 
-* **getDomElement** - Gets the DOM element  which vsizualizes the progress bar. It is wrapped as a jqlite element - https://docs.angularjs.org/api/ng/function/angular.element
+* **getDomElement** - Gets the DOM element  which visizualizes the progress bar. It is wrapped as a jqlite element - https://docs.angularjs.org/api/ng/function/angular.element
 
 ```javascript
 var element = ngProgress.getDomElement();
