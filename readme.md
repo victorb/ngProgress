@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/VictorBjelkholm/ngProgress.png?branch=master)](https://travis-ci.org/VictorBjelkholm/ngProgress)
 
-ngProgress is a provider for angular for showing a loading status of something.
+**ngProgress** is a provider for angular for showing a loading status of something.
 Use cases can be fetching external resources, showing a action taking more-than-normal length
 or simple loading between the page views. Prefereble, only for resource heavy sites.
 
@@ -10,78 +10,99 @@ or simple loading between the page views. Prefereble, only for resource heavy si
 
 Download ngProgress.js manually or install with bower
 
-```bower install ngprogress```
+```bash
+$ bower install ngprogress
+```
 
-Include ngProgress.js ( or ngProgress.min.js) and ngProgress.css in your website.
+Include **ngProgress.js** ( or **ngProgress.min.js**) and **ngProgress.css** in your website.
 
-```<script src="app/components/ngProgress/ngProgress.min.js"></script>```
-```<link rel="stylesheet" href="ngProgress.css">```
+```html
+<script src="app/components/ngProgress/ngProgress.min.js"></script>
+<link rel="stylesheet" href="ngProgress.css">`
+```
 
-Set ngProgress as a dependency in your module
+Set **ngProgress** as a dependency in your module
 
-```var app = angular.module('progressApp', ['ngProgress']);```
+```javascript
+var app = angular.module('progressApp', ['ngProgress']);
+```
 
 
-Inject ngProgress provider in controller
+Inject **ngProgress** provider in controller
 
-```var MainCtrl = function($scope, $timeout, ngProgress) {
-}```
+```javascript
+var MainCtrl = function($scope, $timeout, ngProgress) {}
+	```
 
 Use with the API down below
 
-```
+```javascript
 ngProgress.start();
 $timeout(ngProgress.complete(), 1000);
 ```
 
 ## API
-```
-// Starts the animation and adds between 0 - 5 percent to loading
-// each 400 milliseconds. Should always be finished with ngProgress.complete()
-// to hide it
 
+* **start** - Starts the animation and adds between 0 - 5 percent to loading
+each 400 milliseconds. Should always be finished with ngProgress.complete()
+to hide it
+
+```javascript
 ngProgress.start();
+```
+* **height** - Sets the height of the progressbar. Use any valid CSS value
+Eg '10px', '1em' or '1%'
 
-// Sets the height of the progressbar. Use any valid CSS value
-// Eg '10px', '1em' or '1%'
+```javascript
+ngProgress.height('10px');
+```
 
-ngProgress.height();
+* **color** - Sets the color of the progressbar and it's shadow. Use any valid HTML color
 
-// Sets the color of the progressbar and it's shadow. Use any valid HTML
-// color
+```javascript
+ngProgress.color('#fff');
+```
 
-ngProgress.color();
+* **status** - Returns on how many percent the progressbar is at. Should'nt be needed
 
-// Returns on how many percent the progressbar is at. Should'nt be needed
+```javascript
+var status = ngProgress.status();
+```
 
-ngProgress.status();
+* **stop** - Stops the progressbar at it's current location
 
-// Stops the progressbar at it's current location
-
+```javascript
 ngProgress.stop();
+```
 
-// Set's the progressbar percentage. Use a number between 0 - 100.
-// If 100 is provided, complete will be called.
+* **set** - Set's the progressbar percentage. Use a number between 0 - 100. If 100 is provided, complete will be called.
 
-ngProgress.set();
+```javascript
+ngProgress.set(100);
+```
 
-// Resets the progressbar to percetage 0 and therefore will be hided after
-// it's rollbacked
+* **reset** - Resets the progressbar to percetage 0 and therefore will be hided after it's rollbacked
 
+```javascript
 ngProgress.reset();
+```
 
-// Jumps to 100% progress and fades away progressbar.
+* **complete** - Jumps to 100% progress and fades away progressbar
 
+```javascript
 ngProgress.complete();
+```
 
-// Changes the parent of the DOM element which visualizes the progress bar.
+* **setParent** - Changes the parent of the DOM element which visualizes the progress bar
 
-ngProgress.setParent(HTMLElement);
+```javascript
+ngProgress.setParent(document.getElementById('container'));
+```
 
-// Gets the DOM element  which vsizualizes the progress bar.
-// It is wrapped in as jqlite element - https://docs.angularjs.org/api/ng/function/angular.element
+* **getDomElement** - Gets the DOM element  which vsizualizes the progress bar. It is wrapped as a jqlite element - https://docs.angularjs.org/api/ng/function/angular.element
 
-ngProgress.getDomElement();
+```javascript
+var element = ngProgress.getDomElement();
 ```
 
 ##License
