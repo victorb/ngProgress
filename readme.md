@@ -105,6 +105,20 @@ ngProgress.setParent(document.getElementById('container'));
 var element = ngProgress.getDomElement();
 ```
 
+## Releasing a new version
+
+The current (and quite hacky solution, honestly) to make a new release:
+
+* Update package.json to have new version.
+
+* Commit changes
+
+* Run ```bower version patch|minor|major```
+
+## Publishing new Github-pages version
+
+Merge ```master``` into ```gh-pages```, run ```grunt``` and push to Github
+
 ##License
 
 The MIT License (MIT)
