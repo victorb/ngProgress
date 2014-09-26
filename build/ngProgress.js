@@ -1,9 +1,9 @@
 /*
- ngProgress 1.0.6 - slim, site-wide progressbar for AngularJS
+ngProgress 1.0.7 - slim, site-wide progressbar for AngularJS 
 (C) 2013 - Victor Bjelkholm 
 License: MIT 
 Source: https://github.com/VictorBjelkholm/ngProgress 
- Date Compiled: 2014-08-27
+Date Compiled: 2014-09-26 
 */
 angular.module('ngProgress.provider', ['ngProgress.directive'])
     .provider('ngProgress', function () {
@@ -28,7 +28,7 @@ angular.module('ngProgress.provider', ['ngProgress.directive'])
             // Compile the directive
             var progressbarEl = $compile('<ng-progress></ng-progress>')($scope);
             // Add the element to body
-                parent.appendChild(progressbarEl[0]);
+            parent.appendChild(progressbarEl[0]);
             // Set the initial height
             $scope.count = count;
             // If height or color isn't undefined, set the height, background-color and color.
@@ -160,14 +160,14 @@ angular.module('ngProgress.provider', ['ngProgress.directive'])
                     return count;
                 },
                 //set the parent of the directive, sometimes body is not sufficient
-                setParent: function (newParent) {
-                    if (newParent === null || newParent === undefined) {
+                setParent: function(newParent) {
+                    if(newParent === null || newParent === undefined) {
                         throw new Error('Provide a valid parent of type HTMLElement');
                     }
-
-                    if (parent !== null && parent !== undefined) {
+                    
+                    if(parent !== null && parent !== undefined) {
                         parent.removeChild(progressbarEl[0]);
-                    }
+                    }   
 
                     parent = newParent;
                     parent.appendChild(progressbarEl[0]);
@@ -177,12 +177,12 @@ angular.module('ngProgress.provider', ['ngProgress.directive'])
                 }
             };
         }];
-
+        
         this.setColor = function (color) {
             if (color !== undefined) {
                 this.color = color;
             }
-
+            
             return this.color;
         };
 
@@ -190,7 +190,7 @@ angular.module('ngProgress.provider', ['ngProgress.directive'])
             if (height !== undefined) {
                 this.height = height;
             }
-
+            
             return this.height;
         };
     });
