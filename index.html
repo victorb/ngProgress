@@ -37,7 +37,7 @@
             margin: 1em 0;
          }
 
-         #header a, #demo a, pre {
+         #header a, #demo a, #demo_contained a, pre {
            display: inline-block;
            padding: 6px 12px;
            margin-bottom: 0;
@@ -46,16 +46,17 @@
            line-height: 1.428571429;
            border: 1px solid #CCC;
            border-radius: 4px;
-           -webkit-user-select: none;
-              -moz-user-select: none;
-               -ms-user-select: none;
-                -o-user-select: none;
-                   user-select: none;
-            color: #333333;
-            background-color: #ffffff;
-            white-space: pre-wrap;
+           color: #333333;
+           background-color: #ffffff;
+           white-space: pre-wrap;
 
          }
+
+				 #demo_contained {
+					 position: relative;
+					 background-color: rgba(0,0,0,0.1);
+					 padding: 5px;
+				 }
 
          #header a, #demo a {
            text-align: center;
@@ -88,7 +89,7 @@
          }
     </style>
     <link rel="stylesheet" href="ngProgress.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.1/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.1/angular.js"></script>
 </head>
 <body ng-controller="MainCtrl">
 <style>#forkongithub a{background:#000;color:#fff;text-decoration:none;font-family:arial, sans-serif;text-align:center;font-weight:bold;padding:5px 0;font-size:1rem;line-height:2rem;position:relative;transition:0.5s;display:block;width:100%;}#forkongithub a:hover{background:#060;color:#fff;}#forkongithub a::before,#forkongithub a::after{content:"";width:100%;display:block;position:absolute;top:1px;left:0;height:1px;background:#fff;}#forkongithub a::after{bottom:1px;top:auto;}@media screen and (min-width:800px){#forkongithub{position:absolute;display:block;top:0;right:0;width:200px;overflow:hidden;height:200px;}#forkongithub a{width:200px;padding:5px 40px;position:absolute;top:60px;right:-60px;transform:rotate(45deg);-webkit-transform:rotate(45deg);box-shadow:4px 4px 10px rgba(0,0,0,0.8);}}</style><span id="forkongithub"><a href="https://github.com/victorbjelkholm/ngprogress" target="_blank">Fork me on GitHub</a></span>
@@ -120,7 +121,7 @@
             or just want someone to blame for your problems. Or, visit the <a href="https://github.com/VictorBjelkholm/ngProgress/" target="_blank">Github repository</a>
         </p>
         <div id="installation">
-            
+
         <h2>
             Installation
         </h2>
@@ -140,7 +141,7 @@
 
         </p>
         <p>
-            
+
             Set ngProgress as a dependency in your module
 <pre>
 var app = angular.module('progressApp', ['ngProgress']);
@@ -161,7 +162,7 @@ ngProgress.start();
         </p>
         </div>
         <div id="demo">
-            
+
         <h2>
             Demo
         </h2>
@@ -171,19 +172,19 @@ ngProgress.start();
         </div>
         <hr>
         <div>
-           <a href="#demo" ng-click="startProgress($event)">Start progressbar</a> 
+           <a href="#demo" ng-click="startProgress($event)">Start progressbar</a>
         </div>
         <hr>
         <div>
-           <a href="#demo" ng-click="completeProgress($event)">Complete progressbar</a> 
+           <a href="#demo" ng-click="completeProgress($event)">Complete progressbar</a>
         </div>
         <hr>
         <div>
-           <a href="#demo" ng-click="stopProgress($event)">Stop progressbar</a> 
+           <a href="#demo" ng-click="stopProgress($event)">Stop progressbar</a>
         </div>
         <hr>
         <div>
-           <a href="#demo" ng-click="resetProgress($event)">Reset progressbar</a> 
+           <a href="#demo" ng-click="resetProgress($event)">Reset progressbar</a>
         </div>
         <hr>
         <div>
@@ -204,6 +205,14 @@ ngProgress.start();
             <a href="#demo" ng-click="new_color(color)">Change color</a>
         </div>
         </div>
+				<div id="demo_contained">
+					<h3>Contained</h3>
+					<div>
+						<a href="#demo_contained" ng-click="start_contained($event)">Start progressbar</a>
+						<a href="#demo_contained" ng-click="complete_contained($event)">Complete progressbar</a>
+						<a href="#demo_contained" ng-click="reset_contained($event)">Reset progressbar</a>
+					</div>
+				</div>
         <div id="share">
             <h2>Share</h2>
             <p>Since the providers quality depends on peer-review, please review it yourself or share it to people that like to review stuff. I would be forever grateful and buy you a coffee if you are in Barcelona.</p>
@@ -282,65 +291,79 @@ ngProgress.start();
 <script>
     var app = angular.module('progressApp', ['ngProgress']);
 
-    app.config(function(ngProgressProvider){
-        // Default color is firebrick
-        ngProgressProvider.setColor('firebrick');
-        // Default height is 2px
-        ngProgressProvider.setHeight('2px');
-    });
-
-    var MainCtrl = function($scope, $timeout, ngProgress) {
+    var MainCtrl = function($scope, $timeout, ngProgressFactory) {
         $scope.name = 'Lars';
         $scope.show = false;
 
-        $scope.color = ngProgress.color();
-        $scope.height = ngProgress.height();
+				$scope.progressbar = ngProgressFactory.getInstance();
 
-        ngProgress.start();
+        $scope.color = $scope.progressbar.color();
+        $scope.height = $scope.progressbar.height();
+
+				$scope.contained_progressbar = ngProgressFactory.getInstance();
+				$scope.contained_progressbar.setParent(document.getElementById('demo_contained'));
+				$scope.contained_progressbar.setAbsolute();
+
+        $scope.progressbar.start();
         $timeout(function(){
-            ngProgress.complete();
+            $scope.progressbar.complete();
             $scope.show = true;
         }, 2000);
 
         $scope.setWidth = function(new_width, $event) {
-            ngProgress.set(new_width);
+            $scope.progressbar.set(new_width);
             $event.preventDefault();
         }
 
         $scope.startProgress = function($event) {
             $event.preventDefault();
-            ngProgress.start();
+            $scope.progressbar.start();
         }
 
         $scope.count = function($event) {
             $event.preventDefault();
-            ngProgress.set(ngProgress.status() + 9);
+            $scope.progressbar.set(ngProgress.status() + 9);
         }
 
         $scope.new_color = function(color, $event) {
             $event.preventDefault();
-            ngProgress.color(color);
+            $scope.progressbar.color(color);
         }
 
         $scope.new_height = function(new_height, $event) {
             $event.preventDefault();
-            ngProgress.height(new_height);
+            $scope.progressbar.height(new_height);
         }
 
         $scope.completeProgress = function($event) {
             $event.preventDefault();
-            ngProgress.complete();
+            $scope.progressbar.complete();
         }
 
         $scope.stopProgress = function($event) {
             $event.preventDefault();
-            ngProgress.stop();
+            $scope.progressbar.stop();
         }
 
         $scope.resetProgress = function($event) {
-            ngProgress.reset();
+            $scope.progressbar.reset();
             $event.preventDefault();
         }
+
+				$scope.start_contained = function($event) {
+						$scope.contained_progressbar.start();
+						$event.preventDefault();
+				}
+
+				$scope.complete_contained = function($event) {
+						$scope.contained_progressbar.complete();
+						$event.preventDefault();
+				}
+
+				$scope.reset_contained = function($event) {
+						$scope.contained_progressbar.reset();
+						$event.preventDefault();
+				}
     }
 </script>
 <script>

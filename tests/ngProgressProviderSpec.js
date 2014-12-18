@@ -2,11 +2,11 @@
 waitsFor:true */
 describe('How the provider should work', function () {
     beforeEach(function () {
-        module('ngProgress.provider');
+        module('ngProgress');
     });
 
-    beforeEach(inject(function (ngProgress, $window) {
-        this.progressbar = ngProgress;
+    beforeEach(inject(function (ngProgressFactory, $window) {
+        this.progressbar = ngProgressFactory.getInstance();
         this.$window = $window;
     }));
 
@@ -65,18 +65,18 @@ describe('How the provider should work', function () {
         expect(this.progressbar.status()).toBe(100);
     });
     it('return current height when calling height() without parameters', function () {
-        expect(this.progressbar.height()).toBe('2px');
+        expect(this.progressbar.height).toBe('2px');
     });
     it('set the height when calling height() with parameter', function () {
-        this.progressbar.height('5px');
-        expect(this.progressbar.height()).toBe('5px');
+        this.progressbar.setHeight('5px');
+        expect(this.progressbar.height).toBe('5px');
     });
     it('return current color when calling color() without parameters', function () {
-        expect(this.progressbar.color()).toBe('firebrick');
+        expect(this.progressbar.color).toBe('firebrick');
     });
     it('set the color when calling color() with parameter', function () {
-        this.progressbar.color('green');
-        expect(this.progressbar.color()).toBe('green');
+        this.progressbar.setColor('green');
+        expect(this.progressbar.color).toBe('green');
     });
     it('stops at it\'s current progress when calling sotp()', function () {
         // var value, flag;
@@ -149,13 +149,13 @@ describe('How the provider should work', function () {
         document.body.appendChild(div);
         this.progressbar.setParent(div);
         expect(domElement.parentNode).toEqual(div);
-    })
+    });
     
     it('throws exception when invalid parent is set', function () {
         var that = this;
         expect(function () {
             that.progressbar.setParent(null);
         }).toThrow(new Error('Provide a valid parent of type HTMLElement'));
-    })
+    });
 
 });
