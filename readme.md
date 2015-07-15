@@ -32,17 +32,23 @@ var app = angular.module('progressApp', ['ngProgress']);
 ```
 
 
-Inject **ngProgress** provider in controller
+Inject **ngProgressFactory** in your controller
 
 ```javascript
-var MainCtrl = function($scope, $timeout, ngProgress) {}
+var MainCtrl = function($scope, $timeout, ngProgressFactory) {}
+```
+
+Create a instance of the progressbar
+
+```javascript
+$scope.progressbar = ngProgressFactory.getInstance();
 ```
 
 Use with the API down below
 
 ```javascript
-ngProgress.start();
-$timeout(ngProgress.complete(), 1000);
+$scope.progressbar.start();
+$timeout($scope.progressbar.complete(), 1000);
 ```
 
 ## API

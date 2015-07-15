@@ -67,14 +67,14 @@
 					 padding: 5px;
 				 }
 
-         #header a, #demo a {
+         #header a, #demo a, #demo_contained a {
            text-align: center;
            vertical-align: middle;
            cursor: pointer;
            text-decoration: none;
          }
 
-         #header a, #demo a:hover {
+         #header a, #demo a:hover, #demo_contained a:hover {
             background: #1abc9c;
             color: #fff;
             border: 1px solid #1abc9c;
@@ -183,11 +183,18 @@ var app = angular.module('progressApp', ['ngProgress']);
 </pre>
         </p>
         <p>
-            Inject progressbar-provider in the controller where you plan to use it
+            Inject ngProgressFactory in the controller where you plan to use it
 <pre>
-var MainCtrl = function($scope, ngProgress) {
+var MainCtrl = function($scope, ngProgressFactory) {
 }
 </pre>
+        </p>
+        <p>
+            Create a new instance of ngProgress and start showing the progress of things!
+            <pre>
+              $scope.progressbar = ngProgressFactory.getInstance();
+              $scope.progressbar.start();
+            </pre>
         </p>
         <p>
             Use this command to start the progress bar. The <a href="#api">ngProgress API</a> will show you how to manipulate ngProgress.
@@ -265,6 +272,8 @@ ngProgress.start();
             <h2>
                 API
             </h2>
+            <pre>ngProgressFactory.getInstance()</pre>
+            <p>REQUIRED TO USE! Creates a new instance of ngProgress that you can use the methods below with.</p>
             <pre>ngProgress.start();</pre>
             <p>Starts the animation and adds between 0 - 5 percent to the loading percentage every 400 milliseconds. Should always be finished with progressbar.complete() to hide it.</p>
 
@@ -332,8 +341,8 @@ ngProgress.start();
 
 				$scope.progressbar = ngProgressFactory.getInstance();
 
-        $scope.color = $scope.progressbar.color();
-        $scope.height = $scope.progressbar.height();
+        $scope.color = 'firebrick';
+        $scope.height = '3px';
 
 				$scope.contained_progressbar = ngProgressFactory.getInstance();
 				$scope.contained_progressbar.setParent(document.getElementById('demo_contained'));
