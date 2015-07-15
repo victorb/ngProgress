@@ -174,7 +174,7 @@ angular.module('ngProgress.provider', ['ngProgress.directive'])
     })
 .factory('ngProgressFactory', function($injector, ngProgress) {
     var service = {
-        getInstance: function () {
+        createInstance: function () {
             return $injector.instantiate(ngProgress);
         }
     };

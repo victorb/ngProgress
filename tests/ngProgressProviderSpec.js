@@ -6,7 +6,7 @@ describe('How the provider should work', function () {
     });
 
     beforeEach(inject(function (ngProgressFactory, $window) {
-        this.progressbar = ngProgressFactory.getInstance();
+        this.progressbar = ngProgressFactory.createInstance();
         this.$window = $window;
     }));
 
@@ -140,7 +140,7 @@ describe('How the provider should work', function () {
         waits(200);
         runs(function () { expect([6, this.progressbar.status()]).toEqual([6, 100]); });
     });
-    
+
     it('allow you to change the parent of the progressbar', function () {
         var domElement = this.progressbar.getDomElement()[0];
         expect(domElement.parentNode).toEqual(document.body);
@@ -150,7 +150,7 @@ describe('How the provider should work', function () {
         this.progressbar.setParent(div);
         expect(domElement.parentNode).toEqual(div);
     });
-    
+
     it('throws exception when invalid parent is set', function () {
         var that = this;
         expect(function () {

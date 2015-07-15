@@ -192,7 +192,7 @@ var MainCtrl = function($scope, ngProgressFactory) {
         <p>
             Create a new instance of ngProgress and start showing the progress of things!
             <pre>
-              $scope.progressbar = ngProgressFactory.getInstance();
+              $scope.progressbar = ngProgressFactory.createInstance();
               $scope.progressbar.start();
             </pre>
         </p>
@@ -272,7 +272,7 @@ ngProgress.start();
             <h2>
                 API
             </h2>
-            <pre>ngProgressFactory.getInstance()</pre>
+            <pre>ngProgressFactory.createInstance()</pre>
             <p>REQUIRED TO USE! Creates a new instance of ngProgress that you can use the methods below with.</p>
             <pre>ngProgress.start();</pre>
             <p>Starts the animation and adds between 0 - 5 percent to the loading percentage every 400 milliseconds. Should always be finished with progressbar.complete() to hide it.</p>
@@ -339,12 +339,12 @@ ngProgress.start();
         $scope.name = 'Lars';
         $scope.show = false;
 
-				$scope.progressbar = ngProgressFactory.getInstance();
+				$scope.progressbar = ngProgressFactory.createInstance();
 
         $scope.color = 'firebrick';
         $scope.height = '3px';
 
-				$scope.contained_progressbar = ngProgressFactory.getInstance();
+				$scope.contained_progressbar = ngProgressFactory.createInstance();
 				$scope.contained_progressbar.setParent(document.getElementById('demo_contained'));
 				$scope.contained_progressbar.setAbsolute();
 

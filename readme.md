@@ -41,7 +41,7 @@ var MainCtrl = function($scope, $timeout, ngProgressFactory) {}
 Create a instance of the progressbar
 
 ```javascript
-$scope.progressbar = ngProgressFactory.getInstance();
+$scope.progressbar = ngProgressFactory.createInstance();
 ```
 
 Use with the API down below
