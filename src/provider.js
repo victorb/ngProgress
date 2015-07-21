@@ -166,11 +166,11 @@ angular.module('ngProgress.provider', ['ngProgress.directive'])
                 };
             }];
     })
-.factory('ngProgressFactory', function($injector, ngProgress) {
+.factory('ngProgressFactory', ['$injector', 'ngProgress', function($injector, ngProgress) {
     var service = {
         createInstance: function () {
             return $injector.instantiate(ngProgress);
         }
     };
     return service;
-});
+}]);
