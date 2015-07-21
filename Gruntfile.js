@@ -22,7 +22,7 @@ module.exports = function (grunt) {
             },
             dist: {
                 src: ['src/provider.js', 'src/directive.js', 'src/module.js'],
-                dest: 'build/ngProgress.js'
+                dest: 'build/<%= pkg.name %>.js'
             }
         },
         uglify: {
@@ -52,7 +52,7 @@ module.exports = function (grunt) {
 
         fs.writeFileSync('bower.json', JSON.stringify(bower, null, 4));
         fs.writeFileSync('package.json', JSON.stringify(npm_package, null, 4));
-    })
+    });
 
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-jshint');

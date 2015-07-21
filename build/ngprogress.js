@@ -1,9 +1,9 @@
 /*
-ngProgress 1.1.1 - slim, site-wide progressbar for AngularJS 
+ngprogress 1.1.1 - slim, site-wide progressbar for AngularJS 
 (C) 2013 - Victor Bjelkholm 
 License: MIT 
 Source: https://github.com/VictorBjelkholm/ngProgress 
-Date Compiled: 2015-07-15 
+Date Compiled: 2015-07-21 
 */
 angular.module('ngProgress.provider', ['ngProgress.directive'])
     .service('ngProgress', function () {
@@ -172,15 +172,14 @@ angular.module('ngProgress.provider', ['ngProgress.directive'])
                 };
             }];
     })
-.factory('ngProgressFactory', function($injector, ngProgress) {
+.factory('ngProgressFactory', ['$injector', 'ngProgress', function($injector, ngProgress) {
     var service = {
         createInstance: function () {
             return $injector.instantiate(ngProgress);
         }
     };
     return service;
-});
-
+}]);
 angular.module('ngProgress.directive', [])
     .directive('ngProgress', ["$window", "$rootScope", function ($window, $rootScope) {
         var directiveObj = {
