@@ -58,17 +58,17 @@ to hide it
 ```javascript
 ngProgress.start();
 ```
-* **height** - Sets the height of the progressbar. Use any valid CSS value
+* **setHeight** - Sets the height of the progressbar. Use any valid CSS value
 Eg '10px', '1em' or '1%'
 
 ```javascript
-ngProgress.height('10px');
+ngProgress.setHeight('10px');
 ```
 
-* **color** - Sets the color of the progressbar and it's shadow. Use any valid HTML color
+* **setColor** - Sets the color of the progressbar and it's shadow. Use any valid HTML color
 
 ```javascript
-ngProgress.color('#fff');
+ngProgress.setColor('#fff');
 ```
 
 * **status** - Returns on how many percent the progressbar is at. Should'nt be needed
