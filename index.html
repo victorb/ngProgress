@@ -230,7 +230,7 @@ ngProgress.start();
         </div>
         <hr>
         <div>
-            <a href="#demo" ng-click="count($event)">Increment</a>
+            <a href="#demo" ng-click="increment($event)">Increment</a>
         </div>
         <hr>
         <div>
@@ -364,9 +364,9 @@ ngProgress.start();
             $scope.progressbar.start();
         }
 
-        $scope.count = function($event) {
+        $scope.increment = function($event) {
             $event.preventDefault();
-            $scope.progressbar.set(ngProgress.status() + 9);
+            $scope.progressbar.set($scope.progressbar.status() + 9);
         }
 
         $scope.new_color = function($event, color) {
