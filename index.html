@@ -371,12 +371,12 @@ ngProgress.start();
 
         $scope.new_color = function(color, $event) {
             $event.preventDefault();
-            $scope.progressbar.color(color);
+            $scope.progressbar.setColor(color);
         }
 
         $scope.new_height = function(new_height, $event) {
             $event.preventDefault();
-            $scope.progressbar.height(new_height);
+            $scope.progressbar.setHeight(new_height);
         }
 
         $scope.completeProgress = function($event) {
