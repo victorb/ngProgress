@@ -206,7 +206,7 @@ ngProgress.start();
         <div id="demo">
 
         <h2>
-            Demo
+           Demo
         </h2>
         <div>
             <div class="value">Progress: <input type="number" ng-model="counter"></div>
@@ -237,14 +237,14 @@ ngProgress.start();
             <div class="value">
                 Height: <input type="text" ng-model="height">
             </div>
-            <a href="#demo" ng-click="new_height(height)">Change height</a>
+            <a href="#demo" ng-click="new_height($event, height)">Change height</a>
         </div>
         <hr>
         <div>
             <div class="value">
                 Color: <input type="text" ng-model="color">
             </div>
-            <a href="#demo" ng-click="new_color(color)">Change color</a>
+            <a href="#demo" ng-click="new_color($event, color)">Change color</a>
         </div>
         </div>
 				<div id="demo_contained">
@@ -369,12 +369,12 @@ ngProgress.start();
             $scope.progressbar.set(ngProgress.status() + 9);
         }
 
-        $scope.new_color = function(color, $event) {
+        $scope.new_color = function($event, color) {
             $event.preventDefault();
             $scope.progressbar.setColor(color);
         }
 
-        $scope.new_height = function(new_height, $event) {
+        $scope.new_height = function($event, new_height) {
             $event.preventDefault();
             $scope.progressbar.setHeight(new_height);
         }
