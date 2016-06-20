@@ -2,7 +2,7 @@
   "name": "ngprogress",
     "version": "1.1.3",
   "description": "slim, site-wide progressbar for AngularJS",
-  "main": "ngProgress.js",
+  "main": "build/ngprogress.js",
   "repository": {
     "type": "git",
     "url": "git://github.com/VictorBjelkholm/ngProgress.git"
