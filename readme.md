@@ -127,7 +127,7 @@ The current (and quite hacky solution, honestly) to make a new release:
 
 Merge ```master``` into ```gh-pages```, run ```grunt``` and push to Github
 
-##License
+## License
 
 The MIT License (MIT)
 
