@@ -18,10 +18,10 @@ Download ngProgress.js manually or install with bower
 $ bower install ngprogress
 ```
 
-Include **ngProgress.js** ( or **ngProgress.min.js**) and **ngProgress.css** in your website.
+Include **ngProgress.js** ( or **ngprogress.min.js**) and **ngProgress.css** in your website.
 
 ```html
-<script src="app/components/ngProgress/ngProgress.min.js"></script>
+<script src="app/components/ngprogress/ngprogress.min.js"></script>
 <link rel="stylesheet" href="ngProgress.css">
 ```
 
