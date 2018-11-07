@@ -48,7 +48,9 @@ Use with the API down below
 
 ```javascript
 $scope.progressbar.start();
-$timeout($scope.progressbar.complete(), 1000);
+$timeout(function() {
+  $scope.progressbar.complete()
+}, 1000);
 ```
 
 ## API
